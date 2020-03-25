@@ -1,0 +1,256 @@
+{
+  "fileName": "StringsMock.sol",
+  "contractName": "StringsMock",
+  "source": "pragma solidity ^0.6.0;\n\nimport \"../utils/Strings.sol\";\n\ncontract StringsMock {\n    function fromUint256(uint256 value) public pure returns (string memory) {\n        return Strings.fromUint256(value);\n    }\n}\n",
+  "sourcePath": "contracts/mocks/StringsMock.sol",
+  "sourceMap": "57:151:63:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;57:151:63;;;;;;;",
+  "deployedSourceMap": "57:151:63:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;57:151:63;;;;;;;;;;;;;;;;12:1:-1;9;2:12;84:122:63;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;84:122:63;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;84:122:63;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;141:13;173:26;193:5;173:19;:26::i;:::-;166:33;;84:122;;;:::o;187:726:102:-;246:13;472:1;463:5;:10;459:51;;;489:10;;;;;;;;;;;;;;;;;;;;;459:51;519:12;534:5;519:20;;549:14;573:75;588:1;580:4;:9;573:75;;605:8;;;;;;;635:2;627:10;;;;;;;;;573:75;;;657:19;689:6;679:17;;;;;;;;;;;;;;;;;;;;;;;;;29:1:-1;21:6;17:14;124:4;108:14;100:6;87:42;155:4;147:6;143:17;133:27;;0:164;679:17:102;;;;657:39;;706:13;731:1;722:6;:10;706:26;;749:5;742:12;;764:112;779:1;771:4;:9;764:112;;837:2;830:4;:9;;;;;;825:2;:14;814:27;;796:6;803:7;;;;;;;796:15;;;;;;;;;;;:45;;;;;;;;;;;863:2;855:10;;;;;;;;;764:112;;;899:6;885:21;;;;;;187:726;;;;:::o",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "fromUint256",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "ast": {
+    "absolutePath": "contracts/mocks/StringsMock.sol",
+    "exportedSymbols": {
+      "StringsMock": [
+        5743
+      ]
+    },
+    "id": 5744,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5728,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:63"
+      },
+      {
+        "absolutePath": "contracts/utils/Strings.sol",
+        "file": "../utils/Strings.sol",
+        "id": 5729,
+        "nodeType": "ImportDirective",
+        "scope": 5744,
+        "sourceUnit": 11535,
+        "src": "25:30:63",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 5743,
+        "linearizedBaseContracts": [
+          5743
+        ],
+        "name": "StringsMock",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 5741,
+              "nodeType": "Block",
+              "src": "156:50:63",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 5738,
+                        "name": "value",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 5731,
+                        "src": "193:5:63",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 5736,
+                        "name": "Strings",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 11534,
+                        "src": "173:7:63",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_Strings_$11534_$",
+                          "typeString": "type(library Strings)"
+                        }
+                      },
+                      "id": 5737,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "fromUint256",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 11533,
+                      "src": "173:19:63",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_pure$_t_uint256_$returns$_t_string_memory_ptr_$",
+                        "typeString": "function (uint256) pure returns (string memory)"
+                      }
+                    },
+                    "id": 5739,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "173:26:63",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_memory_ptr",
+                      "typeString": "string memory"
+                    }
+                  },
+                  "functionReturnParameters": 5735,
+                  "id": 5740,
+                  "nodeType": "Return",
+                  "src": "166:33:63"
+                }
+              ]
+            },
+            "documentation": null,
+            "functionSelector": "a2bd3644",
+            "id": 5742,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "fromUint256",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 5732,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5731,
+                  "name": "value",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5742,
+                  "src": "105:13:63",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5730,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "105:7:63",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "104:15:63"
+            },
+            "returnParameters": {
+              "id": 5735,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5734,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 5742,
+                  "src": "141:13:63",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 5733,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "141:6:63",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "140:15:63"
+            },
+            "scope": 5743,
+            "src": "84:122:63",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 5744,
+        "src": "57:151:63"
+      }
+    ],
+    "src": "0:209:63"
+  },
+  "bytecode": "0x608060405234801561001057600080fd5b5061024f806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c8063a2bd364414610030575b600080fd5b61005c6004803603602081101561004657600080fd5b81019080803590602001909291905050506100d7565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561009c578082015181840152602081019050610081565b50505050905090810190601f1680156100c95780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b60606100e2826100e9565b9050919050565b60606000821415610131576040518060400160405280600181526020017f30000000000000000000000000000000000000000000000000000000000000008152509050610214565b600082905060005b6000821461015b578080600101915050600a828161015357fe5b049150610139565b6060816040519080825280601f01601f1916602001820160405280156101905781602001600182028036833780820191505090505b50905060006001830390508593505b6000841461020c57600a84816101b157fe5b0660300160f81b828280600190039350815181106101cb57fe5b60200101907effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916908160001a905350600a848161020457fe5b04935061019f565b819450505050505b91905056fea2646970667358221220118c8f85f1b34828bdff01ca561bb1ffe2fe0633e052a6fb0cc39b82221b9d8764736f6c63430006040033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c8063a2bd364414610030575b600080fd5b61005c6004803603602081101561004657600080fd5b81019080803590602001909291905050506100d7565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561009c578082015181840152602081019050610081565b50505050905090810190601f1680156100c95780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b60606100e2826100e9565b9050919050565b60606000821415610131576040518060400160405280600181526020017f30000000000000000000000000000000000000000000000000000000000000008152509050610214565b600082905060005b6000821461015b578080600101915050600a828161015357fe5b049150610139565b6060816040519080825280601f01601f1916602001820160405280156101905781602001600182028036833780820191505090505b50905060006001830390508593505b6000841461020c57600a84816101b157fe5b0660300160f81b828280600190039350815181106101cb57fe5b60200101907effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916908160001a905350600a848161020457fe5b04935061019f565b819450505050505b91905056fea2646970667358221220118c8f85f1b34828bdff01ca561bb1ffe2fe0633e052a6fb0cc39b82221b9d8764736f6c63430006040033",
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.4+commit.1dca32f3.Emscripten.clang",
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "evmVersion": "petersburg"
+  }
+}

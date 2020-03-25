@@ -1,0 +1,370 @@
+Statistical profiling result from isolate-0x10284b000-v8.log, (745 ticks, 23 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+      6    0.8%          /usr/lib/system/libsystem_platform.dylib
+      5    0.7%          /usr/lib/system/libsystem_kernel.dylib
+      2    0.3%          /usr/lib/system/libsystem_pthread.dylib
+      2    0.3%          /usr/lib/system/libsystem_malloc.dylib
+      1    0.1%          /usr/lib/libc++abi.dylib
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+    105   14.1%   14.4%  LazyCompile: *<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+     92   12.3%   12.6%  Builtin: MathRandom
+     46    6.2%    6.3%  Builtin: ArgumentsAdaptorTrampoline
+     34    4.6%    4.7%  LazyCompile: *Array.fill.filter.map.x /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:17:10
+     33    4.4%    4.5%  Builtin: ArrayFilter
+     31    4.2%    4.3%  Builtin: ArrayMap
+     25    3.4%    3.4%  LazyCompile: *Array.fill.filter /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:16:13
+     16    2.1%    2.2%  Builtin: CallFunction_ReceiverIsAny
+      7    0.9%    1.0%  Builtin: ArrayReduce
+      6    0.8%    0.8%  LazyCompile: *Array.fill.filter.map.reduce /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:18:13
+      5    0.7%    0.7%  Builtin: GrowFastSmiOrObjectElements
+      5    0.7%    0.7%  Builtin: Call_ReceiverIsAny
+      5    0.7%    0.7%  Builtin: ArraySingleArgumentConstructor_HoleySmi_DontOverride
+      2    0.3%    0.3%  Builtin: CompileLazy
+      1    0.1%    0.1%  Stub: JSEntryStub
+      1    0.1%    0.1%  LazyCompile: ~Array.fill.filter.map.x /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:17:10
+      1    0.1%    0.1%  LazyCompile: ~Array.fill.filter /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:16:13
+      1    0.1%    0.1%  Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+      1    0.1%    0.1%  Builtin: LoadIC_Uninitialized
+      1    0.1%    0.1%  Builtin: CEntry_Return1_DontSaveFPRegs_ArgvOnStack_NoBuiltinExit
+      1    0.1%    0.1%  Builtin: ArrayPrototypePush
+
+ [C++]:
+   ticks  total  nonlib   name
+     73    9.8%   10.0%  T v8::internal::Runtime_GenerateRandomNumbers(int, v8::internal::Object**, v8::internal::Isolate*)
+     38    5.1%    5.2%  T node::native_module::NativeModuleLoader::CompileFunction(v8::FunctionCallbackInfo<v8::Value> const&)
+     16    2.1%    2.2%  T _vm_allocate
+     13    1.7%    1.8%  T v8::internal::SerializerDeserializer::Iterate(v8::internal::Isolate*, v8::internal::RootVisitor*)
+     10    1.3%    1.4%  t v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleySmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)1> >::Fill(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Object>, unsigned int, unsigned int)
+      7    0.9%    1.0%  T __kernelrpc_mach_port_set_attributes
+      4    0.5%    0.5%  T _guarded_pwrite_np
+      3    0.4%    0.4%  t _tiny_free_no_lock
+      3    0.4%    0.4%  T v8::internal::RootScavengeVisitor::VisitRootPointer(v8::internal::Root, char const*, v8::internal::Object**)
+      3    0.4%    0.4%  T v8::internal::Heap::Scavenge()
+      3    0.4%    0.4%  T v8::internal::BuiltinDeserializer::ExtractCodeObjectSize(int)
+      2    0.3%    0.3%  t v8::internal::Scavenger::ScavengeObject(v8::internal::HeapObjectReference**, v8::internal::HeapObject*)
+      2    0.3%    0.3%  t v8::internal::ParserBase<v8::internal::Parser>::ParseExpressionOrLabelledStatement(v8::internal::ZoneList<v8::internal::AstRawString const*>*, v8::internal::ZoneList<v8::internal::AstRawString const*>*, v8::internal::AllowLabelledFunctionStatement, bool*)
+      2    0.3%    0.3%  t v8::internal::Heap::AllocateRaw(int, v8::internal::AllocationSpace, v8::internal::AllocationAlignment)
+      2    0.3%    0.3%  t std::__1::enable_if<(__is_forward_iterator<unsigned char const*>::value) && (is_constructible<unsigned char, std::__1::iterator_traits<unsigned char const*>::reference>::value), std::__1::__wrap_iter<unsigned char*> >::type std::__1::vector<unsigned char, std::__1::allocator<unsigned char> >::insert<unsigned char const*>(std::__1::__wrap_iter<unsigned char const*>, unsigned char const*, unsigned char const*)
+      2    0.3%    0.3%  t std::__1::basic_ostream<char, std::__1::char_traits<char> >& std::__1::__put_character_sequence<char, std::__1::char_traits<char> >(std::__1::basic_ostream<char, std::__1::char_traits<char> >&, char const*, unsigned long)
+      2    0.3%    0.3%  t std::__1::__split_buffer<v8::internal::interpreter::BytecodeRegisterOptimizer::RegisterInfo**, v8::internal::RecyclingZoneAllocator<v8::internal::interpreter::BytecodeRegisterOptimizer::RegisterInfo**>&>::push_back(v8::internal::interpreter::BytecodeRegisterOptimizer::RegisterInfo**&&)
+      2    0.3%    0.3%  t _tiny_malloc_should_clear
+      2    0.3%    0.3%  t _szone_free
+      2    0.3%    0.3%  T v8::internal::compiler::Node::New(v8::internal::Zone*, unsigned int, v8::internal::compiler::Operator const*, int, v8::internal::compiler::Node* const*, bool)
+      2    0.3%    0.3%  T v8::internal::RootScavengeVisitor::VisitRootPointers(v8::internal::Root, char const*, v8::internal::Object**, v8::internal::Object**)
+      2    0.3%    0.3%  T v8::internal::ItemParallelJob::Run(std::__1::shared_ptr<v8::internal::Counters>)
+      2    0.3%    0.3%  T v8::internal::Bitmap::Clear()
+      2    0.3%    0.3%  T node::NodePlatform::MonotonicallyIncreasingTime()
+      2    0.3%    0.3%  T _mach_vm_allocate
+      2    0.3%    0.3%  T _mach_make_memory_entry_64
+      1    0.1%    0.1%  t void v8::internal::String::WriteToFlat<unsigned short>(v8::internal::String*, unsigned short*, int, int)
+      1    0.1%    0.1%  t void std::__1::__insertion_sort_3<bool (*&)(v8::internal::compiler::MoveOperands const*, v8::internal::compiler::MoveOperands const*), v8::internal::compiler::MoveOperands**>(v8::internal::compiler::MoveOperands**, v8::internal::compiler::MoveOperands**, bool (*&)(v8::internal::compiler::MoveOperands const*, v8::internal::compiler::MoveOperands const*))
+      1    0.1%    0.1%  t v8::internal::interpreter::BytecodeGenerator::VisitNoStackOverflowCheck(v8::internal::AstNode*)
+      1    0.1%    0.1%  t v8::internal::compiler::Typer::Visitor::Reduce(v8::internal::compiler::Node*)
+      1    0.1%    0.1%  t v8::internal::compiler::TypeCache::TypeCache()
+      1    0.1%    0.1%  t v8::internal::compiler::SimplifiedOperatorGlobalCache::SimplifiedOperatorGlobalCache()
+      1    0.1%    0.1%  t v8::internal::compiler::RepresentationSelector::VisitNode(v8::internal::compiler::Node*, v8::internal::compiler::Truncation, v8::internal::compiler::SimplifiedLowering*)
+      1    0.1%    0.1%  t v8::internal::ParserBase<v8::internal::Parser>::ParseObjectPropertyDefinition(v8::internal::ParserBase<v8::internal::Parser>::ObjectLiteralChecker*, bool*, bool*, bool*)
+      1    0.1%    0.1%  t v8::internal::ParserBase<v8::internal::Parser>::ParseExpressionCoverGrammar(bool, bool*)
+      1    0.1%    0.1%  t v8::internal::ParserBase<v8::internal::Parser>::ParseAssignmentExpression(bool, bool*)
+      1    0.1%    0.1%  t v8::internal::MaybeObject** v8::internal::Deserializer<v8::internal::DefaultDeserializerAllocator>::ReadDataCase<22, 0, 0, 0>(v8::internal::Isolate*, v8::internal::MaybeObject**, unsigned long, unsigned char, bool)
+      1    0.1%    0.1%  t v8::internal::HeapObjectIterator::Next()
+      1    0.1%    0.1%  t v8::internal::DescriptorArray::Append(v8::internal::Descriptor*)
+      1    0.1%    0.1%  t v8::internal::CodeSpaceMemoryModificationScope::CodeSpaceMemoryModificationScope(v8::internal::Heap*)
+      1    0.1%    0.1%  t v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastStringWrapperElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)9> >::CollectElementIndices(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::FixedArrayBase>, v8::internal::KeyAccumulator*)
+      1    0.1%    0.1%  t v8::base::TemplateHashMapEntry<void*, void*>* v8::base::TemplateHashMapImpl<void*, void*, v8::base::HashEqualityThenKeyMatcher<void*, bool (*)(void*, void*)>, v8::base::DefaultAllocationPolicy>::LookupOrInsert<v8::base::TemplateHashMapImpl<void*, void*, v8::base::HashEqualityThenKeyMatcher<void*, bool (*)(void*, void*)>, v8::base::DefaultAllocationPolicy>::LookupOrInsert(void* const&, unsigned int, v8::base::DefaultAllocationPolicy)::'lambda'()>(void* const&, unsigned int, v8::base::TemplateHashMapImpl<void*, void*, v8::base::HashEqualityThenKeyMatcher<void*, bool (*)(void*, void*)>, v8::base::DefaultAllocationPolicy>::LookupOrInsert(void* const&, unsigned int, v8::base::DefaultAllocationPolicy)::'lambda'() const&, v8::base::DefaultAllocationPolicy)
+      1    0.1%    0.1%  t v8::Platform::CallBlockingTaskOnWorkerThread(std::__1::unique_ptr<v8::Task, std::__1::default_delete<v8::Task> >)
+      1    0.1%    0.1%  t std::__1::__tree<std::__1::__value_type<std::__1::tuple<v8::internal::FeedbackSlotKind, int, void const*>, v8::internal::FeedbackSlot>, std::__1::__map_value_compare<std::__1::tuple<v8::internal::FeedbackSlotKind, int, void const*>, std::__1::__value_type<std::__1::tuple<v8::internal::FeedbackSlotKind, int, void const*>, v8::internal::FeedbackSlot>, std::__1::less<std::__1::tuple<v8::internal::FeedbackSlotKind, int, void const*> >, true>, v8::internal::ZoneAllocator<std::__1::__value_type<std::__1::tuple<v8::internal::FeedbackSlotKind, int, void const*>, v8::internal::FeedbackSlot> > >::__node_insert_unique(std::__1::__tree_node<std::__1::__value_type<std::__1::tuple<v8::internal::FeedbackSlotKind, int, void const*>, v8::internal::FeedbackSlot>, void*>*)
+      1    0.1%    0.1%  t _tiny_free_list_add_ptr
+      1    0.1%    0.1%  t _szone_realloc
+      1    0.1%    0.1%  t _nanov2_calloc
+      1    0.1%    0.1%  t _err_load_strings
+      1    0.1%    0.1%  t ___find_warguments
+      1    0.1%    0.1%  t __EUC_mbrtowc
+      1    0.1%    0.1%  T v8_inspector::V8StackTraceId::V8StackTraceId()
+      1    0.1%    0.1%  T v8::internal::interpreter::BytecodeGenerator::VisitCall(v8::internal::Call*)
+      1    0.1%    0.1%  T v8::internal::compiler::Verifier::Run(v8::internal::compiler::Graph*, v8::internal::compiler::Verifier::Typing, v8::internal::compiler::Verifier::CheckInputs, v8::internal::compiler::Verifier::CodeType)
+      1    0.1%    0.1%  T v8::internal::compiler::Scheduler::PrepareUses()
+      1    0.1%    0.1%  T v8::internal::compiler::RegisterAllocationData::RegisterAllocationData(v8::internal::RegisterConfiguration const*, v8::internal::Zone*, v8::internal::compiler::Frame*, v8::internal::compiler::InstructionSequence*, char const*)
+      1    0.1%    0.1%  T v8::internal::compiler::LoopVariableOptimizer::TryGetInductionVariable(v8::internal::compiler::Node*)
+      1    0.1%    0.1%  T v8::internal::compiler::JSCallReducer::ReduceJSCall(v8::internal::compiler::Node*, v8::internal::Handle<v8::internal::SharedFunctionInfo>)
+      1    0.1%    0.1%  T v8::internal::compiler::JSCallReducer::Reduce(v8::internal::compiler::Node*)
+      1    0.1%    0.1%  T v8::internal::compiler::InstructionSelector::SupportedMachineOperatorFlags()
+      1    0.1%    0.1%  T v8::internal::compiler::GraphTrimmer::TrimGraph()
+      1    0.1%    0.1%  T v8::internal::compiler::Frame::Frame(int)
+      1    0.1%    0.1%  T v8::internal::compiler::CodeGenerator::AssembleArchInstruction(v8::internal::compiler::Instruction*)
+      1    0.1%    0.1%  T v8::internal::compiler::BytecodeGraphBuilder::BytecodeGraphBuilder(v8::internal::Zone*, v8::internal::Handle<v8::internal::SharedFunctionInfo>, v8::internal::Handle<v8::internal::FeedbackVector>, v8::internal::BailoutId, v8::internal::compiler::JSGraph*, v8::internal::compiler::CallFrequency&, v8::internal::compiler::SourcePositionTable*, v8::internal::Handle<v8::internal::Context>, int, v8::base::Flags<v8::internal::compiler::JSTypeHintLowering::Flag, int>, bool, bool)
+      1    0.1%    0.1%  T v8::internal::Zone::New(unsigned long)
+      1    0.1%    0.1%  T v8::internal::StoreIC::ComputeHandler(v8::internal::LookupIterator*)
+      1    0.1%    0.1%  T v8::internal::StoreBuffer::MoveAllEntriesToRememberedSet()
+      1    0.1%    0.1%  T v8::internal::SharedFunctionInfo::GetCode() const
+      1    0.1%    0.1%  T v8::internal::Script::GetPositionInfo(int, v8::internal::Script::PositionInfo*, v8::internal::Script::OffsetFlag) const
+      1    0.1%    0.1%  T v8::internal::ScannerStream::For(v8::internal::Isolate*, v8::internal::Handle<v8::internal::String>)
+      1    0.1%    0.1%  T v8::internal::Runtime_RegExpExec(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.1%    0.1%  T v8::internal::Runtime_DefineClass(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.1%    0.1%  T v8::internal::Runtime::GetObjectProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, bool*)
+      1    0.1%    0.1%  T v8::internal::Parser::BuildIteratorCloseForCompletion(v8::internal::ZoneList<v8::internal::Statement*>*, v8::internal::Variable*, v8::internal::Expression*, v8::internal::IteratorType)
+      1    0.1%    0.1%  T v8::internal::PagedSpace::SizeOfObjects()
+      1    0.1%    0.1%  T v8::internal::OrderedHashSet::ConvertToKeysArray(v8::internal::Isolate*, v8::internal::Handle<v8::internal::OrderedHashSet>, v8::internal::GetKeysConversion)
+      1    0.1%    0.1%  T v8::internal::Object::BooleanValue(v8::internal::Isolate*)
+      1    0.1%    0.1%  T v8::internal::MemoryChunk::Initialize(v8::internal::Heap*, unsigned long, unsigned long, unsigned long, unsigned long, v8::internal::Executability, v8::internal::Space*, v8::internal::VirtualMemory*)
+      1    0.1%    0.1%  T v8::internal::MemoryAllocator::MemoryAllocator(v8::internal::Isolate*, unsigned long, unsigned long)
+      1    0.1%    0.1%  T v8::internal::MarkCompactCollector::MarkCompactCollector(v8::internal::Heap*)
+      1    0.1%    0.1%  T v8::internal::MapUpdater::ReconfigureToDataField(int, v8::internal::PropertyAttributes, v8::internal::PropertyConstness, v8::internal::Representation, v8::internal::Handle<v8::internal::FieldType>)
+      1    0.1%    0.1%  T v8::internal::MapUpdater::BuildDescriptorArray()
+      1    0.1%    0.1%  T v8::internal::Log::MessageBuilder::AppendString(char const*, unsigned long)
+      1    0.1%    0.1%  T v8::internal::KeyedLoadIC::LoadElementHandler(v8::internal::Handle<v8::internal::Map>, v8::internal::KeyedAccessLoadMode)
+      1    0.1%    0.1%  T v8::internal::JSObject::FastPropertyAt(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Representation, v8::internal::FieldIndex)
+      1    0.1%    0.1%  T v8::internal::Isolate::IsAnyInitialArrayPrototype(v8::internal::Handle<v8::internal::JSArray>)
+      1    0.1%    0.1%  T v8::internal::Isolate::CurrentEmbeddedBlob()
+      1    0.1%    0.1%  T v8::internal::IdentifierPart::Is(int)
+      1    0.1%    0.1%  T v8::internal::Heap::CreateFillerObjectAt(unsigned long, int, v8::internal::ClearRecordedSlots, v8::internal::ClearFreedMemoryMode)
+      1    0.1%    0.1%  T v8::internal::HashTable<v8::internal::NumberDictionary, v8::internal::NumberDictionaryShape>::Rehash(v8::internal::Isolate*)
+      1    0.1%    0.1%  T v8::internal::CompilationCache::Iterate(v8::internal::RootVisitor*)
+      1    0.1%    0.1%  T v8::internal::CodeStubAssembler::EmitElementStore(v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, bool, v8::internal::ElementsKind, v8::internal::KeyedAccessStoreMode, v8::internal::compiler::CodeAssemblerLabel*, v8::internal::compiler::Node*)
+      1    0.1%    0.1%  T v8::internal::CharacterRange::AddClassEscape(char, v8::internal::ZoneList<v8::internal::CharacterRange>*, bool, v8::internal::Zone*)
+      1    0.1%    0.1%  T v8::internal::CancelableTaskManager::TryAbort(unsigned long long)
+      1    0.1%    0.1%  T v8::internal::Builtin_StringPrototypeToUpperCaseIntl(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.1%    0.1%  T v8::internal::Builtin_BooleanConstructor(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.1%    0.1%  T v8::internal::Assembler::call(v8::internal::Label*)
+      1    0.1%    0.1%  T v8::internal::ArrayBufferTracker::ProcessBuffers(v8::internal::Page*, v8::internal::ArrayBufferTracker::ProcessingMode)
+      1    0.1%    0.1%  T v8::internal::Accessors::FunctionLengthGetter(v8::Local<v8::Name>, v8::PropertyCallbackInfo<v8::Value> const&)
+      1    0.1%    0.1%  T std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__grow_by(unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long)
+      1    0.1%    0.1%  T node::binding::GetInternalBinding(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.1%    0.1%  T node::TTYWrap::New(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.1%    0.1%  T _task_info
+      1    0.1%    0.1%  T _task_get_special_port
+      1    0.1%    0.1%  T _host_get_clock_service
+      1    0.1%    0.1%  T _aesni_set_encrypt_key
+      1    0.1%    0.1%  T ___pthread_init
+      1    0.1%    0.1%  T _ERR_load_X509V3_strings
+      1    0.1%    0.1%  T _ERR_load_ASN1_strings
+      1    0.1%    0.1%  T _DSO_dsobyaddr
+      1    0.1%    0.1%  T _CRYPTO_zalloc
+
+ [Summary]:
+   ticks  total  nonlib   name
+    419   56.2%   57.5%  JavaScript
+    287   38.5%   39.4%  C++
+     76   10.2%   10.4%  GC
+     16    2.1%          Shared libraries
+     23    3.1%          Unaccounted
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+     73   39.9%    9.8%  T v8::internal::Runtime_GenerateRandomNumbers(int, v8::internal::Object**, v8::internal::Isolate*)
+     40   21.9%    5.4%  T v8::internal::Builtin_HandleApiCall(int, v8::internal::Object**, v8::internal::Isolate*)
+     13    7.1%    1.7%  T v8::internal::Runtime_CompileLazy(int, v8::internal::Object**, v8::internal::Isolate*)
+     11    6.0%    1.5%  T v8::internal::Builtin_ArrayPrototypeFill(int, v8::internal::Object**, v8::internal::Isolate*)
+      8    4.4%    1.1%  T v8::internal::Runtime_KeyedStoreIC_Miss(int, v8::internal::Object**, v8::internal::Isolate*)
+      7    3.8%    0.9%  T v8::internal::Runtime_InterpreterDeserializeLazy(int, v8::internal::Object**, v8::internal::Isolate*)
+      7    3.8%    0.9%  T v8::internal::Runtime_CompileOptimized_Concurrent(int, v8::internal::Object**, v8::internal::Isolate*)
+      6    3.3%    0.8%  T v8::internal::Runtime_CompileForOnStackReplacement(int, v8::internal::Object**, v8::internal::Isolate*)
+      2    1.1%    0.3%  T v8::internal::Runtime_StoreIC_Miss(int, v8::internal::Object**, v8::internal::Isolate*)
+      2    1.1%    0.3%  T v8::internal::Runtime_NewObject(int, v8::internal::Object**, v8::internal::Isolate*)
+      2    1.1%    0.3%  T v8::internal::Runtime_DefineClass(int, v8::internal::Object**, v8::internal::Isolate*)
+      2    1.1%    0.3%  T v8::internal::Builtin_ObjectDefineProperties(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.5%    0.1%  T v8::internal::Runtime_RegExpExec(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.5%    0.1%  T v8::internal::Runtime_LoadIC_Miss(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.5%    0.1%  T v8::internal::Runtime_KeyedLoadIC_Miss(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.5%    0.1%  T v8::internal::Runtime_CreateRegExpLiteral(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.5%    0.1%  T v8::internal::Runtime_CreateObjectLiteral(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.5%    0.1%  T v8::internal::Runtime_AllocateInNewSpace(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.5%    0.1%  T v8::internal::Builtin_StringPrototypeToUpperCaseIntl(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.5%    0.1%  T v8::internal::Builtin_ReflectOwnKeys(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.5%    0.1%  T v8::internal::Builtin_ReflectGetOwnPropertyDescriptor(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.5%    0.1%  T v8::internal::Builtin_BooleanConstructor(int, v8::internal::Object**, v8::internal::Isolate*)
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+    105   14.1%  LazyCompile: *<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+    105  100.0%    LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+    105  100.0%      LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+    105  100.0%        LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+    105  100.0%          LazyCompile: ~Module._load internal/modules/cjs/loader.js:572:24
+    105  100.0%            LazyCompile: ~Module.runMain internal/modules/cjs/loader.js:867:26
+
+     92   12.3%  Builtin: MathRandom
+     54   58.7%    LazyCompile: *<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+     54  100.0%      LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+     54  100.0%        LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+     54  100.0%          LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+     54  100.0%            LazyCompile: ~Module._load internal/modules/cjs/loader.js:572:24
+     22   23.9%    LazyCompile: *Array.fill.filter.map.x /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:17:10
+     22  100.0%      Builtin: ArrayMap
+     17   77.3%        LazyCompile: *<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+     17  100.0%          LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+     17  100.0%            LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+      5   22.7%        Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+      5  100.0%          LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+      5  100.0%            LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+     16   17.4%    LazyCompile: *Array.fill.filter /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:16:13
+     16  100.0%      Builtin: ArrayFilter
+     16  100.0%        Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+     16  100.0%          LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+     16  100.0%            LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+
+     73    9.8%  T v8::internal::Runtime_GenerateRandomNumbers(int, v8::internal::Object**, v8::internal::Isolate*)
+     73  100.0%    T v8::internal::Runtime_GenerateRandomNumbers(int, v8::internal::Object**, v8::internal::Isolate*)
+     73  100.0%      Builtin: MathRandom
+     42   57.5%        LazyCompile: *<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+     42  100.0%          LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+     42  100.0%            LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+     16   21.9%        LazyCompile: *Array.fill.filter.map.x /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:17:10
+     16  100.0%          Builtin: ArrayMap
+     11   68.8%            LazyCompile: *<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+      5   31.3%            Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+     15   20.5%        LazyCompile: *Array.fill.filter /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:16:13
+     15  100.0%          Builtin: ArrayFilter
+     15  100.0%            Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+
+     46    6.2%  Builtin: ArgumentsAdaptorTrampoline
+     20   43.5%    Builtin: ArrayFilter
+     20  100.0%      Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+     20  100.0%        LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+     20  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+     20  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+     12   26.1%    Builtin: ArrayMap
+      9   75.0%      LazyCompile: *<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+      9  100.0%        LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+      9  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+      9  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+      3   25.0%      Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+      3  100.0%        LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+      3  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+      3  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+      8   17.4%    Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+      8  100.0%      LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+      8  100.0%        LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+      8  100.0%          LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+      8  100.0%            LazyCompile: ~Module._load internal/modules/cjs/loader.js:572:24
+      4    8.7%    Builtin: ArrayReduce
+      4  100.0%      Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+      4  100.0%        LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+      4  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+      4  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+      2    4.3%    LazyCompile: *<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+      2  100.0%      LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+      2  100.0%        LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+      2  100.0%          LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+      2  100.0%            LazyCompile: ~Module._load internal/modules/cjs/loader.js:572:24
+
+     38    5.1%  T node::native_module::NativeModuleLoader::CompileFunction(v8::FunctionCallbackInfo<v8::Value> const&)
+     38  100.0%    T v8::internal::Builtin_HandleApiCall(int, v8::internal::Object**, v8::internal::Isolate*)
+     38  100.0%      LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+     38  100.0%        LazyCompile: ~nativeModuleRequire internal/bootstrap/loaders.js:185:29
+      8   21.1%          Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      4   10.5%          Eval: ~<anonymous> buffer.js:1:1
+      4  100.0%            LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      3    7.9%          Eval: ~<anonymous> tty.js:1:1
+      3  100.0%            LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      3    7.9%          Eval: ~<anonymous> internal/modules/cjs/loader.js:1:1
+      3  100.0%            LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      2    5.3%          LazyCompile: ~setupBuffer internal/bootstrap/node.js:394:21
+      2  100.0%            Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      2    5.3%          LazyCompile: ~loadPreloadModules internal/bootstrap/pre_execution.js:356:28
+      2  100.0%            LazyCompile: ~prepareMainThreadExecution internal/bootstrap/pre_execution.js:5:36
+      2    5.3%          Eval: ~<anonymous> stream.js:1:1
+      2  100.0%            LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      2    5.3%          Eval: ~<anonymous> net.js:1:1
+      2  100.0%            LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      2    5.3%          Eval: ~<anonymous> internal/util.js:1:1
+      2  100.0%            LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      1    2.6%          LazyCompile: ~setupProcessObject internal/bootstrap/node.js:315:28
+      1  100.0%            Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      1    2.6%          Eval: ~<anonymous> vm.js:1:1
+      1  100.0%            LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      1    2.6%          Eval: ~<anonymous> url.js:1:1
+      1  100.0%            LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      1    2.6%          Eval: ~<anonymous> timers.js:1:1
+      1  100.0%            LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      1    2.6%          Eval: ~<anonymous> internal/url.js:1:1
+      1  100.0%            LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      1    2.6%          Eval: ~<anonymous> internal/process/task_queues.js:1:1
+      1  100.0%            LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      1    2.6%          Eval: ~<anonymous> internal/main/run_main_module.js:1:1
+      1    2.6%          Eval: ~<anonymous> internal/console/global.js:1:1
+      1  100.0%            LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      1    2.6%          Eval: ~<anonymous> fs.js:1:1
+      1  100.0%            LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+      1    2.6%          Eval: ~<anonymous> _stream_readable.js:1:1
+      1  100.0%            LazyCompile: ~NativeModule.compile internal/bootstrap/loaders.js:290:42
+
+     34    4.6%  LazyCompile: *Array.fill.filter.map.x /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:17:10
+     34  100.0%    Builtin: ArrayMap
+     20   58.8%      LazyCompile: *<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+     20  100.0%        LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+     20  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+     20  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+     14   41.2%      Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+     14  100.0%        LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+     14  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+     14  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+
+     33    4.4%  Builtin: ArrayFilter
+     33  100.0%    Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+     33  100.0%      LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+     33  100.0%        LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+     33  100.0%          LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+     33  100.0%            LazyCompile: ~Module._load internal/modules/cjs/loader.js:572:24
+
+     31    4.2%  Builtin: ArrayMap
+     24   77.4%    LazyCompile: *<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+     24  100.0%      LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+     24  100.0%        LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+     24  100.0%          LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+     24  100.0%            LazyCompile: ~Module._load internal/modules/cjs/loader.js:572:24
+      6   19.4%    Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+      6  100.0%      LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+      6  100.0%        LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+      6  100.0%          LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+      6  100.0%            LazyCompile: ~Module._load internal/modules/cjs/loader.js:572:24
+      1    3.2%    LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+      1  100.0%      LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+      1  100.0%        LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+      1  100.0%          LazyCompile: ~Module._load internal/modules/cjs/loader.js:572:24
+      1  100.0%            LazyCompile: ~Module.runMain internal/modules/cjs/loader.js:867:26
+
+     25    3.4%  LazyCompile: *Array.fill.filter /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:16:13
+     25  100.0%    Builtin: ArrayFilter
+     25  100.0%      Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+     25  100.0%        LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+     25  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+     25  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+
+     23    3.1%  UNKNOWN
+
+     16    2.1%  T _vm_allocate
+
+     16    2.1%  Builtin: CallFunction_ReceiverIsAny
+     11   68.8%    Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+     11  100.0%      LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+     11  100.0%        LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+     11  100.0%          LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+     11  100.0%            LazyCompile: ~Module._load internal/modules/cjs/loader.js:572:24
+      5   31.3%    LazyCompile: *<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+      5  100.0%      LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+      5  100.0%        LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+      5  100.0%          LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+      5  100.0%            LazyCompile: ~Module._load internal/modules/cjs/loader.js:572:24
+
+     13    1.7%  T v8::internal::SerializerDeserializer::Iterate(v8::internal::Isolate*, v8::internal::RootVisitor*)
+
+     10    1.3%  t v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleySmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)1> >::Fill(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Object>, unsigned int, unsigned int)
+     10  100.0%    T v8::internal::Builtin_ArrayPrototypeFill(int, v8::internal::Object**, v8::internal::Isolate*)
+      7   70.0%      LazyCompile: *<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+      7  100.0%        LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+      7  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+      7  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+      3   30.0%      Eval: ~<anonymous> /Users/piotr/Documents/ethworks/ethereumjs-vm-profiler/index.js:1:1
+      3  100.0%        LazyCompile: ~Module._compile internal/modules/cjs/loader.js:739:37
+      3  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:825:37
+      3  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:677:33
+

@@ -1,0 +1,12 @@
+{
+  "name": "ethereumjs-vm-profiler",
+  "private": true,
+  "scripts": {
+    "start": "node benchmarks/index.js",
+    "inspect": "node --inspect-brk benchmarks/index.js"
+  },
+  "dependencies": {
+    "@ethereum-waffle/provider": "^2.4.0"
+  },
+  "devDependencies": {}
+}
