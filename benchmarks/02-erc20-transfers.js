@@ -1,25 +1,21 @@
 const { MockProvider } = require('@ethereum-waffle/provider');
 const { ContractFactory, utils } = require('ethers')
 const ERC20Mock = require('../contracts/ERC20Mock.json')
+const { choose2, randomEthValue } = require('./utils')
 
-exports.run = async function () {
-  // parameters
-  const DEPLOYS = 10
-  const TRANSFERS_PER_DEPLOY = 10
-
-  // execution
+exports.run = async function (runs) {
   const provider = new MockProvider({ hardfork: 'istanbul' })
-  const [alice, bob] = provider.getWallets()
-  const erc20Factory = new ContractFactory(ERC20Mock.abi, ERC20Mock.bytecode, alice)
+  const wallets = provider.getWallets()
+  const erc20Factory = new ContractFactory(ERC20Mock.abi, ERC20Mock.bytecode, wallets[0])
+  const token = await erc20Factory.deploy(wallets[0].address, utils.parseEther('1000000'))
 
-  for (let i = 0; i < DEPLOYS; i++) {
-    const token = await erc20Factory.deploy(alice.address, utils.parseEther('1000'))
+  for (let i = 1; i < wallets.length; i++) {
+    await token.transfer(wallets[i].address, utils.parseEther('10000'))
+  }
 
-    for (let j = 0; j < TRANSFERS_PER_DEPLOY; j++) {
-      const value = utils.parseEther((Math.floor(10 + Math.random() * 30)).toString())
-      
-      await token.connect(alice).transfer(bob.address, value)
-      await token.connect(bob).transfer(alice.address, value.div(2))
-    }
+  for (let i = 0; i < runs; i++) {
+    const [from, to] = choose2(wallets)
+    const value = randomEthValue(1, 15)
+    await token.connect(from).transfer(to.address, value)
   }
 }

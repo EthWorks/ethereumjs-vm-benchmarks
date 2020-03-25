@@ -1,17 +1,13 @@
 const { MockProvider } = require('@ethereum-waffle/provider')
-const { utils } = require('ethers')
+const { choose2, randomEthValue } = require('./utils')
 
-exports.run = async function () {
-  // parameters
-  const RUNS = 100
-
-  // execution
+exports.run = async function (runs) {
   const provider = new MockProvider({ hardfork: 'istanbul' })
-  const [alice, bob] = provider.getWallets()
+  const wallets = provider.getWallets()
 
-  for (let i = 0; i < RUNS; i++) {
-    const value = utils.parseEther((Math.floor(50 + Math.random() * 100)).toString())
-    await alice.sendTransaction({ to: bob.address, value })
-    await bob.sendTransaction({ to: alice.address, value })
+  for (let i = 0; i < runs; i++) {
+    const [from, to] = choose2(wallets)
+    const value = randomEthValue(1, 15)
+    await from.sendTransaction({ to: to.address, value })
   }
 }
