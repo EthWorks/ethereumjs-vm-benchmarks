@@ -1,5 +1,5 @@
-const { run: run01 } = require('./01')
-const { run: run02 } = require('./02')
+const { run: run01 } = require('./01-eth-transfers')
+const { run: run02 } = require('./02-erc20-transfers')
 
 async function benchmark (name, fn) {
   console.time(name)
@@ -8,8 +8,8 @@ async function benchmark (name, fn) {
 }
 
 async function main () {
-  await benchmark('benchmark 01', run01)
-  await benchmark('benchmark 02', run02)
+  await benchmark('01 |   eth-transfers', run01)
+  await benchmark('02 | erc20-transfers', run02)
 }
 
 main()

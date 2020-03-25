@@ -6,7 +6,8 @@
     "inspect": "node --inspect-brk benchmarks/index.js"
   },
   "dependencies": {
-    "@ethereum-waffle/provider": "^2.4.0"
+    "@ethereum-waffle/provider": "^2.4.0",
+    "ethers": "^4.0.46"
   },
   "devDependencies": {}
 }
