@@ -4,7 +4,51 @@
 
 Total benchmark time: 60000 ms
 
+## Execution hotspots
+
+* `01-eth-transfers`
+  - Note: In this benchmark most of the time is spent in ethers and ganache
+  - garbage collection - 2.27%
+  - `Keccak.update` + `Keccak.digest` - 2.24%
+  - `errno` - 1.18%
+* `02-erc20-transfers`
+  - `Interpreter.runStep` - 6.17%
+  - `Keccak.update` + `Keccak.digest` - 4.6%
+  - garbage collection - 3.28%
+  - `Interpreter._runStepHook` - 3.14%
+* `03-erc20-deploys`
+  - `Common.param` - 8.46%
+  - `Keccak.update` + `Keccak.digest` - 7.09% 
+  - `Interpreter.runStep` - 3.57%
+  - garbage collection - 2.29%
+  - `Interpreter._runStepHook` - 1.35%
+* `04-erc20-calls`
+* `05-erc20-storage`
+* `06-many-storage`
+* Combined
+  - `Keccak.update` + `Keccak.digest` - 4.48%
+  - garbage collection - 3.29%
+  - `Interpreter.runStep` - 3.21%
+  - `Common.param` - 2.29%
+  - `Interpreter._runStepHook` - 1.98%
+  - `errno` - 1.7%
+  - `toBuffer` - 0.59%
+
 ## Recommendations
+
+### Remove leveldb, make merkle-particia-tree a sync structure
+
+Unfortunately performance impact is hard to measure because of the current async nature. Since merkle-particia-tree is such a core component a large performance benefit is expected.
+
+TODO: look into the exact code.
+
+Replace leveldb with a simple map.
+
+Benefits
+- cleaner, easier to reason about code
+- no async - faster code
+- no semaphores
+- no leveldb error shenanigans
 
 ### Remove `errno` dependency from levelup - up to 1.7% speedup
 
