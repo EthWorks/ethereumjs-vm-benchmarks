@@ -18,9 +18,18 @@ function uniform (min, max) {
   return Math.floor(min + Math.random() * (max - min))
 }
 
+function randomEthAddress () {
+  return '0x' + new Array(40).fill(0).map(randomHexDigit).join('')
+}
+
+function randomHexDigit () {
+  return choose1('0123456789abcdef')
+}
+
 module.exports = {
   randomEthValue,
   choose1,
   choose2,
   uniform,
+  randomEthAddress,
 }
