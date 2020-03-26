@@ -1,10 +1,9 @@
-const { MockProvider } = require('@ethereum-waffle/provider');
+const { provider } = require('./provider')
 const { ContractFactory } = require('ethers')
 const ERC20Mock = require('../contracts/ERC20Mock.json')
 const { choose1, randomEthValue } = require('./utils')
 
 exports.run = async function (runs) {
-  const provider = new MockProvider({ hardfork: 'istanbul' })
   const wallets = provider.getWallets()
   const erc20Factory = new ContractFactory(ERC20Mock.abi, ERC20Mock.bytecode, wallets[0])
 

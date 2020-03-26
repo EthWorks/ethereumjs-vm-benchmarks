@@ -1,8 +1,7 @@
-const { MockProvider } = require('@ethereum-waffle/provider')
+const { provider } = require('./provider')
 const { choose2, randomEthValue } = require('./utils')
 
 exports.run = async function (runs) {
-  const provider = new MockProvider({ hardfork: 'istanbul' })
   const wallets = provider.getWallets()
 
   for (let i = 0; i < runs; i++) {

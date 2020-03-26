@@ -19,8 +19,8 @@ async function main () {
   await benchmark('02 | erc20-transfers', run02, scale * 200)
   await benchmark('03 |   erc20-deploys', run03, scale * 125)
   await benchmark('04 |     erc20-calls', run04, scale * 1200)
-  await benchmark('05 |   erc20-storage', run05, scale * 200)
-  await benchmark('06 |    many-storage', run06, scale * 10)
+  await benchmark('05 |   erc20-storage', run05, scale * 220)
+  await benchmark('06 |    many-storage', run06, scale * 12)
 }
 
 main()
