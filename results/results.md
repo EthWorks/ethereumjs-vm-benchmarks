@@ -1,16 +1,18 @@
-# Benchmarks
+# Ethereumjs-vm performance research
 
-## Full
+## General information
 
-Time taken `60000 ms`
+Total benchmark time: 60000 ms
+
+## Recommendations
 
 ### Remove `errno` dependency from levelup - up to 1.7% speedup
 
 merkle-patricia-tree has levelup as dependency. Calling `db.get` (`levelup@1.3.9 /lib/levelup.js:195`) in levelup sometimes results in errors. The program spends 1.7% of the total runtime just constructing those errors.
 
-Probably caused by weird stack trace manipulations.
+Probably caused by weird stack trace manipulations and a ton of information on the error object. I suspect that this information isn't used in any meaningful way.
 
-TODO: how many errors?
+The total count of errors created during the 60s benchmark was: 46529. Constructing 46k errors should take ~150ms, not upwards of a second.
 
 ### Reduce the number of times hashes have to be calculated - up to 4.48% speedup
 
@@ -31,7 +33,7 @@ Ganache uses the `toBuffer` function for deserialization. This gets called quite
 
 Mainly used by `Transaction.getDataFee`. `Common.param` can probably be made faster by using maps instead of loops.
 
-TODO: investigate further.
+Current architecture computes the parameters every time for each hardfork. This can probably be done once and memoized indefinitely, resulting in significant performance increases.
 
 ### Optimize Interpreter._runStepHook - up to 1.98% speedup
 
