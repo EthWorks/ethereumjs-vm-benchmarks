@@ -6,8 +6,11 @@ Total benchmark time: 60000 ms
 
 ## Execution hotspots
 
+This includes items that take significant >1% of time in the benchmark. It excludes items that couldn't be easily identified or are not a part of ethereumjs and its dependencies (like ganache-core or ethers).
+
 * `01-eth-transfers`
   - Note: In this benchmark most of the time is spent in ethers and ganache
+  - `Module._compile` - 3.23%
   - garbage collection - 2.27%
   - `Keccak.update` + `Keccak.digest` - 2.24%
   - `errno` - 1.18%
@@ -16,29 +19,141 @@ Total benchmark time: 60000 ms
   - `Keccak.update` + `Keccak.digest` - 4.6%
   - garbage collection - 3.28%
   - `Interpreter._runStepHook` - 3.14%
+  - `Module._compile` - 2.76%
 * `03-erc20-deploys`
   - `Common.param` - 8.46%
   - `Keccak.update` + `Keccak.digest` - 7.09% 
   - `Interpreter.runStep` - 3.57%
+  - `Module._compile` - 2.69%
   - garbage collection - 2.29%
   - `Interpreter._runStepHook` - 1.35%
 * `04-erc20-calls`
+  - `Interpreter.runStep` - 4.46%
+  - garbage collection - 3.09%
+  - `Module._compile` - 2.58%
+  - `Interpreter._runStepHook` - 1.91%
+  - `errno` - 1.73%
+  - `Keccak.update` + `Keccak.digest` - 1.6%
 * `05-erc20-storage`
+  - `Keccak.update` + `Keccak.digest` - 4.9%
+  - `Interpreter.runStep` - 4.19%
+  - garbage collection - 2.81%
+  - `Module.compile` - 2.64%
+  - `Interpreter._runStepHook` - 2.35%
 * `06-many-storage`
+  - `Interpreter.runStep` - 4.89%
+  - `Keccak.update` + `Keccak.digest` - 4.32%
+  - garbage collector - 3.32%
+  - `Interpreter._runStepHook` - 2.61%
+  - `Module._compile` - 2.5%
 * Combined
   - `Keccak.update` + `Keccak.digest` - 4.48%
   - garbage collection - 3.29%
   - `Interpreter.runStep` - 3.21%
+  - `Module._compile` - 2.6%
   - `Common.param` - 2.29%
   - `Interpreter._runStepHook` - 1.98%
   - `errno` - 1.7%
-  - `toBuffer` - 0.59%
+
+### Graphs
+
+`Keccak.update` + `Keccak.digest`
+
+```
+      TT             | 7%
+      ||             | 6%
+   -- ||    TT -- -- | 5%
+   || ||    || || || | 4%
+-- || ||    || || || | 3%
+|| || || -- || || || | 2%
+|| || || || || || || | 1%
+---------------------+ 0%
+01 02 03 04 05 06 Combined
+```
+
+`Module._compile`
+
+```
+--                   | 4%
+|| -- -- -- -- -- -- | 3%
+|| || || || || || || | 2%
+|| || || || || || || | 1%
+---------------------+ 0%
+01 02 03 04 05 06 Combined
+```
+
+garbage collection
+
+```
+   --          -- -- | 4%
+-- || -- TT    || || | 3%
+|| || || || TT || || | 2%
+|| || || || || || || | 1%
+---------------------+ 0%
+01 02 03 04 05 06 Combined
+```
+
+`errno`
+
+```
+                     | 4%
+                     | 3%
+         TT       TT | 2%
+TT __ __ || __ __ || | 1%
+---------------------+ 0%
+01 02 03 04 05 06 Combined
+```
+
+`Interpreter.runStep`
+
+```
+                     | 7%
+   TT                | 6%
+   ||    --    TT    | 5%
+   || -- || TT ||    | 4%
+   || || || || || TT | 3%
+   || || || || || || | 2%
+__ || || || || || || | 1%
+---------------------+ 0%
+01 02 03 04 05 06 Combined
+```
+
+`Interpreter._runStepHook`
+
+```
+                     | 4%
+   TT       -- --    | 3%
+   || -- TT || || TT | 2%
+__ || || || || || || | 1%
+---------------------+ 0%
+01 02 03 04 05 06 Combined
+```
+
+`Common.param`
+
+```
+      --             | 9%
+      ||             | 8%
+      ||             | 7%
+      ||             | 6%
+      ||             | 5%
+      ||             | 4%
+      ||          -- | 3%
+      ||          || | 2%
+__ __ || __ __ __ || | 1%
+---------------------+ 0%
+01 02 03 04 05 06 Combined
+```
 
 ## Recommendations
 
-### Remove leveldb, make merkle-particia-tree a sync structure
+### Reduce the number of dependencies
 
-Unfortunately performance impact is hard to measure because of the current async nature. Since merkle-particia-tree is such a core component a large performance benefit is expected.
+Require calls (`Module._compile`) are a very expensive part of running the program. While the benchmarks suggest that it is more a problem of ganache than ethereumjs-vm, reducing the number of dependencies would be beneficial to the projects performance.
+
+### Remove leveldb, make merkle-patricia-tree a sync structure
+
+Unfortunately performance impact is hard to measure because of the current async nature. Since merkle-patricia-tree is such a core component a large performance benefit is expected.
 
 TODO: look into the exact code.
 
@@ -69,10 +184,6 @@ This is mainly called in the following places: `TrieNode.hash`, `BlockHeader.has
 
 Not really my area of expertise. I know you have been looking into it previously and since it isn't that big of a number I decided to put my focus elsewhere.
 
-### Optimize ethereumjs-util toBuffer regex - up to 0.59% speedup
-
-Ganache uses the `toBuffer` function for deserialization. This gets called quite often and checks the correctness of a hex string using a regex (by calling `isHexString` from `ethjs-util`). A potential performance gain could result from having a hand written simple parser for this use case.
-
 ### Optimize Common.param - up to 2.29% speedup
 
 Mainly used by `Transaction.getDataFee`. `Common.param` can probably be made faster by using maps instead of loops.
@@ -88,10 +199,13 @@ Further investigation shows how much time is actually wasted on transpiled async
   - 154.8 ms is spent in `Interpreter.lookupOpInfo`
   - 1.5 ms is spent in `EEI.getGasLeft`
 
+It is important to note that while most of the performance benefit would be gained from better async support one of the biggest other drains is `AsyncEventEmitter.emit`. This function is used not only in `_runStepHook` but also in many other places and takes surprisingly big chunks of the project's runtime.
+
 ### Optimize Interpreter.runStep - up to 3.21% speedup
 
 This is the main meat of the vm, so naturally a lot of time is spent here.
-As with `_runStepHook` there is significant waste introduced by transpiled async code. Out of the 2020.5 ms spent inside `Interpreter.runStep` only 1547.8 ms actually runs the opcode functions.
+
+As with `_runStepHook` there is significant waste introduced by transpiled async code. Out of the 2020.5 ms spent inside `Interpreter.runStep` only 1547.8 ms actually runs the opcode functions. Additionally `AsyncEventEmitter.emit` is also somehow used during this function's execution.
 
 To guide the focus of any potential optimisations i present the list of most time consuming opcodes:
 
