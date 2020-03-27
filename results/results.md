@@ -1,9 +1,5 @@
 # Ethereumjs-vm performance research
 
-## General information
-
-Total benchmark time: 60000 ms
-
 ## Execution hotspots
 
 This includes items that take significant >1% of time in the benchmark. It excludes items that couldn't be easily identified or are not a part of ethereumjs and its dependencies (like ganache-core or ethers).
@@ -147,50 +143,43 @@ __ __ || __ __ __ || | 1%
 
 ## Recommendations
 
-### Reduce the number of dependencies
+### Remove level, make merkle-patricia-tree a sync structure
 
-Require calls (`Module._compile`) are a very expensive part of running the program. While the benchmarks suggest that it is more a problem of ganache than ethereumjs-vm, reducing the number of dependencies would be beneficial to the projects performance.
+Unfortunately performance impact is hard to measure because of the current async nature. Since merkle-patricia-tree is such a core component a large performance benefit is expected. At minimum it would eliminate 1.7% of time spent on constructing unused errors.
 
-### Remove leveldb, make merkle-patricia-tree a sync structure
+Level should be replaced with a simple map. The only operation that could potentially be slower is committing checkpoints, which would be replaced by a simple for (copy each of the values from ScratchDB to DB). Note that for the keys to work they might need to be stringified, but this should be less costly than encoding and decoding the values each time they are read/saved from the database.
 
-Unfortunately performance impact is hard to measure because of the current async nature. Since merkle-patricia-tree is such a core component a large performance benefit is expected.
+A ton of overhead would be removed from the structure - since map operations are synchronous there would be no need for callbacks and semaphores. This in turn would massively simplify the code of the data structure.
 
-TODO: look into the exact code.
-
-Replace leveldb with a simple map.
-
-Benefits
-- cleaner, easier to reason about code
-- no async - faster code
-- no semaphores
-- no leveldb error shenanigans
-
-### Remove `errno` dependency from levelup - up to 1.7% speedup
-
-merkle-patricia-tree has levelup as dependency. Calling `db.get` (`levelup@1.3.9 /lib/levelup.js:195`) in levelup sometimes results in errors. The program spends 1.7% of the total runtime just constructing those errors.
+Level is responsible for one of the biggest performance drain when creating new contracts which is it's errno dependency. Calling `db.get` (`levelup@1.3.9 /lib/levelup.js:195`) in levelup sometimes results in errors. The program spends 1.7% of the total runtime just constructing those errors.
 
 Probably caused by weird stack trace manipulations and a ton of information on the error object. I suspect that this information isn't used in any meaningful way.
 
 The total count of errors created during the 60s benchmark was: 46529. Constructing 46k errors should take ~150ms, not upwards of a second.
 
-### Reduce the number of times hashes have to be calculated - up to 4.48% speedup
+Overall benefits
+- cleaner, easier to reason about code
+- no async - faster code
+- no semaphores
+- no errno error shenanigans
 
-- `Keccak.update` - 3.28%
-- `Keccak.digest` - 1.20%
-
-This is mainly called in the following places: `TrieNode.hash`, `BlockHeader.hash` and `Transaction.hash`. Potential optimisations: memoization, per-object caching.
-
-### Optimize garbage collection - up to 3.29% speedup
-
-Not really my area of expertise. I know you have been looking into it previously and since it isn't that big of a number I decided to put my focus elsewhere.
-
-### Optimize Common.param - up to 2.29% speedup
+### Optimize Common.param
 
 Mainly used by `Transaction.getDataFee`. `Common.param` can probably be made faster by using maps instead of loops.
 
 Current architecture computes the parameters every time for each hardfork. This can probably be done once and memoized indefinitely, resulting in significant performance increases.
 
-### Optimize Interpreter._runStepHook - up to 1.98% speedup
+### Reduce the number of times hashes have to be calculated
+
+This is mainly called in the following places: `TrieNode.hash`, `BlockHeader.hash` and `Transaction.hash`. Potential optimisations: memoization, per-object caching.
+
+### Optimize garbage collection
+
+Not really my area of expertise. I know you have been looking into it previously and since it isn't that big of a number I decided to put my focus elsewhere.
+
+I did some memory allocation benchmarks and they show that most of the allocation happens when loading new modules and allocating space for the code. One thing that is very unusual is that even in the middle of the benchmark there is still many require calls being made.
+
+### Optimize Interpreter._runStepHook
 
 What is important to note that `Interpreter.run` spends 1/3 of the time in just `_runStepHook`.
 
@@ -201,7 +190,7 @@ Further investigation shows how much time is actually wasted on transpiled async
 
 It is important to note that while most of the performance benefit would be gained from better async support one of the biggest other drains is `AsyncEventEmitter.emit`. This function is used not only in `_runStepHook` but also in many other places and takes surprisingly big chunks of the project's runtime.
 
-### Optimize Interpreter.runStep - up to 3.21% speedup
+### Optimize Interpreter.runStep
 
 This is the main meat of the vm, so naturally a lot of time is spent here.
 
@@ -218,3 +207,17 @@ To guide the focus of any potential optimisations i present the list of most tim
 Notable mention:
 
 - `Interpreter.getOpHandler` - 0.13% of total execution time. No clue why so high
+
+### Reduce the number of dependencies
+
+Require calls (`Module._compile`) are a very expensive part of running the program. While the benchmarks suggest that it is more a problem of ganache than ethereumjs-vm, reducing the number of dependencies would be beneficial to the projects performance.
+
+https://npm.anvaka.com/#/view/2d/ethereumjs-vm
+
+Potential removal candidates:
+- `util.promisify` - only required in node versions < 8.0.0. Does ethereumjs-vm even support those? Release 4.0.0 on 2019-04-26 drops support for node 4 and 6.
+- `safe-buffer` - shouldn't be needed, but is still used. Release 4.0.0 was supposed to remove it. It is only used in `packages/account/src/index.ts:4`, but is declared as a dependency in `packages/vm/package.json:62`, and should probably be remove from the account also.
+- `fake-merkle-patricia-tree` - https://github.com/ethereumjs/ethereumjs-vm/search?q=fake-merkle-patricia-tree&type= It is only declared as dependency without being ever used.
+- `core-js-pure` - only used to get an ES6 `Set`. Yet with dropped support for old node versions this is not needed. https://node.green/#ES2015-built-ins-Set-basic-functionality
+- `level-mem` - used in `ethereumjs-blockchain`, but since only the basic put, get and delete functionality is needed a simple Map will be sufficient.
+- `flow-stoplight` - could potentially be removed after replacing `level-mem` with a synchronous data structure
