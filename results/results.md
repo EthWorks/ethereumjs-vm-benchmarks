@@ -53,7 +53,7 @@ This includes items that take significant >1% of time in the benchmark. It exclu
 
 ### Graphs
 
-`Keccak.update` + `Keccak.digest`
+#### `Keccak.update` + `Keccak.digest`
 
 ```
       TT             | 7%
@@ -67,7 +67,7 @@ This includes items that take significant >1% of time in the benchmark. It exclu
 01 02 03 04 05 06 Combined
 ```
 
-`Module._compile`
+#### `Module._compile`
 
 ```
 --                   | 4%
@@ -78,7 +78,7 @@ This includes items that take significant >1% of time in the benchmark. It exclu
 01 02 03 04 05 06 Combined
 ```
 
-garbage collection
+#### garbage collection
 
 ```
    --          -- -- | 4%
@@ -89,7 +89,7 @@ garbage collection
 01 02 03 04 05 06 Combined
 ```
 
-`errno`
+#### `errno`
 
 ```
                      | 4%
@@ -100,7 +100,7 @@ TT __ __ || __ __ || | 1%
 01 02 03 04 05 06 Combined
 ```
 
-`Interpreter.runStep`
+#### `Interpreter.runStep`
 
 ```
                      | 7%
@@ -114,7 +114,7 @@ __ || || || || || || | 1%
 01 02 03 04 05 06 Combined
 ```
 
-`Interpreter._runStepHook`
+#### `Interpreter._runStepHook`
 
 ```
                      | 4%
@@ -125,7 +125,7 @@ __ || || || || || || | 1%
 01 02 03 04 05 06 Combined
 ```
 
-`Common.param`
+#### `Common.param`
 
 ```
       --             | 9%
@@ -140,6 +140,13 @@ __ __ || __ __ __ || | 1%
 ---------------------+ 0%
 01 02 03 04 05 06 Combined
 ```
+
+#### Individual benchmark runtime for repeated execution
+
+![Runtimes](runtimes.png)
+
+This image shows the results of running the benchmark looped 20 times and graphing
+the runtimes of the individual benchmarks. I also run the profiler for a longer running benchmark, but it didn't show any increase in the time spent in GC. It is hard to attribute the growth in execution time to a single factor.
 
 ## Recommendations
 
