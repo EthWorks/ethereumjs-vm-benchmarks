@@ -12,7 +12,8 @@
     "uuid": "^3.4.0"
   },
   "resolutions": {
-    "@ethereum-waffle/provider/ganache-core/ethereumjs-vm": "file:./local-forks/ethereumjs-vm"
+    "@ethereum-waffle/provider/ganache-core/ethereumjs-vm": "file:./local-forks/ethereumjs-vm",
+    "@ethereum-waffle/provider/ganache-core/ethereumjs-block": "file:./local-forks/ethereumjs-block"
   },
   "devDependencies": {
     "rimraf": "^3.0.2"
