@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "start": "node benchmarks/index.js",
-    "inspect": "node --inspect-brk benchmarks/index.js"
+    "inspect": "node --inspect-brk benchmarks/index.js",
+    "reinstall-vm": "rimraf node_modules/ganache-core/node_modules/ethereumjs-vm && yarn install --check-files"
   },
   "dependencies": {
     "@ethereum-waffle/provider": "^2.4.0",
@@ -12,5 +13,8 @@
   },
   "resolutions": {
     "@ethereum-waffle/provider/ganache-core/ethereumjs-vm": "file:./local-forks/ethereumjs-vm"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
   }
 }
