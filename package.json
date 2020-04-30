@@ -7,7 +7,10 @@
   },
   "dependencies": {
     "@ethereum-waffle/provider": "^2.4.0",
-    "ethers": "^4.0.46"
+    "ethers": "^4.0.46",
+    "uuid": "^3.4.0"
   },
-  "devDependencies": {}
+  "resolutions": {
+    "@ethereum-waffle/provider/ganache-core/ethereumjs-vm": "file:./local-forks/ethereumjs-vm"
+  }
 }
