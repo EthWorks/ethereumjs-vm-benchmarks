@@ -2149,7 +2149,7 @@ ethereumjs-account@^2.0.3:
     rlp "^2.0.0"
     safe-buffer "^5.1.1"
 
-ethereumjs-block@2.2.2, "ethereumjs-block@file:./local-forks/ethereumjs-block", "ethereumjs-block@file:local-forks/ethereumjs-block":
+ethereumjs-block@2.2.2, "ethereumjs-block@file:./local-forks/ethereumjs-block", "ethereumjs-block@file:local-forks/ethereumjs-block", ethereumjs-block@~2.2.0:
   version "2.2.2"
   dependencies:
     async "^2.0.1"
@@ -2169,25 +2169,12 @@ ethereumjs-block@^1.2.2, ethereumjs-block@^1.4.1, ethereumjs-block@^1.6.0:
     ethereumjs-util "^5.0.0"
     merkle-patricia-tree "^2.1.2"
 
-ethereumjs-block@~2.2.0, ethereumjs-block@~2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/ethereumjs-block/-/ethereumjs-block-2.2.2.tgz#c7654be7e22df489fda206139ecd63e2e9c04965"
-  integrity sha512-2p49ifhek3h2zeg/+da6XpdFR3GlqY3BIEiqxGF8j9aSRIgkb7M1Ky+yULBKJOu8PAZxfhsYA+HxUk2aCQp3vg==
-  dependencies:
-    async "^2.0.1"
-    ethereumjs-common "^1.5.0"
-    ethereumjs-tx "^2.1.1"
-    ethereumjs-util "^5.0.0"
-    merkle-patricia-tree "^2.1.2"
-
-ethereumjs-blockchain@^4.0.3:
+"ethereumjs-blockchain@file:local-forks/ethereumjs-blockchain":
   version "4.0.3"
-  resolved "https://registry.yarnpkg.com/ethereumjs-blockchain/-/ethereumjs-blockchain-4.0.3.tgz#e013034633a30ad2006728e8e2b21956b267b773"
-  integrity sha512-0nJWbyA+Gu0ZKZr/cywMtB/77aS/4lOVsIKbgUN2sFQYscXO5rPbUfrEe7G2Zhjp86/a0VqLllemDSTHvx3vZA==
   dependencies:
     async "^2.6.1"
     ethashjs "~0.0.7"
-    ethereumjs-block "~2.2.2"
+    ethereumjs-block "file:../../Library/Caches/Yarn/v6/npm-ethereumjs-blockchain-4.0.3-3a9b2011-fb2d-4521-812c-42dfbebaa044-1588267529691/node_modules/ethereumjs-block"
     ethereumjs-common "^1.5.0"
     ethereumjs-util "~6.1.0"
     flow-stoplight "^1.0.0"
@@ -2274,8 +2261,8 @@ ethereumjs-vm@4.1.3, "ethereumjs-vm@file:./local-forks/ethereumjs-vm":
     async-eventemitter "^0.2.2"
     core-js-pure "^3.0.1"
     ethereumjs-account "^3.0.0"
-    ethereumjs-block "file:../../Library/Caches/Yarn/v6/npm-ethereumjs-vm-4.1.3-d8d69e51-2e1f-4612-9263-6e62d270b6c4-1588266519245/node_modules/ethereumjs-block"
-    ethereumjs-blockchain "^4.0.3"
+    ethereumjs-block "file:../../Library/Caches/Yarn/v6/npm-ethereumjs-vm-4.1.3-139f0559-5e1b-45c3-886c-48d7fbbfa3e4-1588267529617/node_modules/ethereumjs-block"
+    ethereumjs-blockchain "file:../../Library/Caches/Yarn/v6/npm-ethereumjs-vm-4.1.3-139f0559-5e1b-45c3-886c-48d7fbbfa3e4-1588267529617/node_modules/ethereumjs-blockchain"
     ethereumjs-common "^1.5.0"
     ethereumjs-tx "^2.1.2"
     ethereumjs-util "^6.2.0"

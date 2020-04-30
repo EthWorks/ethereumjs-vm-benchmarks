@@ -1,7 +1,7 @@
 {
   "name": "ethereumjs-blockchain",
   "version": "4.0.3",
-  "description": "A module to store and interact with blocks",
+  "description": "LOCAL FORK - A module to store and interact with blocks",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -44,7 +44,7 @@
   "dependencies": {
     "async": "^2.6.1",
     "ethashjs": "~0.0.7",
-    "ethereumjs-block": "~2.2.2",
+    "ethereumjs-block": "file:../ethereumjs-block",
     "ethereumjs-common": "^1.5.0",
     "ethereumjs-util": "~6.1.0",
     "flow-stoplight": "^1.0.0",
