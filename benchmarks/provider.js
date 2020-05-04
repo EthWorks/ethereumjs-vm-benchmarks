@@ -1,3 +1,6 @@
-const { MockProvider } = require('@ethereum-waffle/provider')
+const bre = require("@nomiclabs/buidler");
+const {usePlugin} = require("@nomiclabs/buidler/internal/core/config/config-env")
 
-exports.provider = new MockProvider({ hardfork: 'istanbul' })
+usePlugin("@nomiclabs/buidler-waffle")
+
+exports.provider = bre.waffle.provider;
