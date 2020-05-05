@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "start": "node benchmarks/index.js",
-    "inspect": "node --inspect-brk benchmarks/index.js"
+    "inspect": "node --inspect-brk benchmarks/index.js",
+    "verdaccio": "verdaccio --config verdaccio/config.yaml"
   },
   "dependencies": {
     "@nomiclabs/buidler": "^1.3.2",
