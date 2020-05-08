@@ -5,7 +5,8 @@
     "start": "node benchmarks/index.js",
     "inspect": "node --inspect-brk benchmarks/index.js",
     "verdaccio:run": "verdaccio --config verdaccio/config.yaml",
-    "verdaccio:prepare": "rm -rf verdaccio/storage && cp -R verdaccio/prepared-storage verdaccio/storage"
+    "verdaccio:prepare": "rm -rf verdaccio/storage && cp -R verdaccio/prepared-storage verdaccio/storage",
+    "verdaccio:install": "YARN_REGISTRY='http://localhost:4873' yarn install"
   },
   "dependencies": {
     "@nomiclabs/buidler": "^1.3.2",
