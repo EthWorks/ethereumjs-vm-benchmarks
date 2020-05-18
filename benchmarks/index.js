@@ -5,14 +5,15 @@ const { run: run04 } = require('./04-erc20-calls')
 const { run: run05 } = require('./05-erc20-storage')
 const { run: run06 } = require('./06-many-storage')
 
+const repeat = 1
+const samples = 20
+const scale = 0.01
+
 async function benchmark (name, fn, runs) {
   console.time(name)
-  await fn(runs)
+  await fn(Math.ceil(runs))
   console.timeEnd(name)
 }
-
-const scale = 1
-const repeat = 20
 
 // NOTE: the runs value is experimentally determined to cause 10 seconds of execution
 async function main () {

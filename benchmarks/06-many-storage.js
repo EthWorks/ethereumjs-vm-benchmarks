@@ -1,28 +1,43 @@
 const { provider } = require('./provider')
 const { ContractFactory, utils } = require('ethers')
 const ERC20Mock = require('../contracts/ERC20Mock.json')
+const { measureExecution } = require("./utils/measureExecution")
 const { choose1, randomEthAddress, randomEthValue } = require('./utils/random')
+
+const numApprovals = 10
+const oneMillionEth = utils.parseEther('1000000')
+const tenThousandEth = utils.parseEther('10000')
 
 exports.run = async function (runs) {
   const wallets = provider.getWallets()
   const erc20Factory = new ContractFactory(ERC20Mock.abi, ERC20Mock.bytecode, wallets[0])
 
+  const data = new Array(runs)
+
   for (let i = 0; i < runs; i++) {
-    const token = await erc20Factory.deploy(
-      wallets[0].address,
-      utils.parseEther('1000000'),
-    )
+    data[i] = new Array(numApprovals)
 
-    for (let j = 1; j < wallets.length; j++) {
-      await token.transfer(wallets[j].address, utils.parseEther('10000'))
-    }
-
-    for (let j = 0; j < 10; j++) {
-      const holder = choose1(wallets)
-      await token.connect(holder).approve(
-        randomEthAddress(),
-        randomEthValue(10, 50),
-      )
+    for (let j = 0; j < numApprovals; j++) {
+      data[i][j] = {
+        holder: choose1(wallets),
+        spender: randomEthAddress(),
+        value: randomEthValue(10, 50)
+      }
     }
   }
+
+  return measureExecution(async function () {
+    for (let i = 0; i < runs; i++) {
+      const token = await erc20Factory.deploy(wallets[0].address, oneMillionEth)
+
+      for (let j = 1; j < wallets.length; j++) {
+        await token.transfer(wallets[j].address, tenThousandEth)
+      }
+
+      for (let j = 0; j < numApprovals; j++) {
+        const { holder, spender, value } = data[i][j]
+        await token.connect(holder).approve(spender, value)
+      }
+    }
+  })
 }
