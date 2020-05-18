@@ -1,7 +1,7 @@
 const { provider } = require('./provider')
 const { ContractFactory, utils } = require('ethers')
 const ERC20Mock = require('../contracts/ERC20Mock.json')
-const { choose1, randomEthAddress, randomEthValue } = require('./utils')
+const { choose1, randomEthAddress, randomEthValue } = require('./utils/random')
 
 exports.run = async function (runs) {
   const wallets = provider.getWallets()
