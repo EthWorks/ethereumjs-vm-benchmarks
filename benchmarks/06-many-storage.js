@@ -1,14 +1,13 @@
-const { provider } = require('./provider')
 const { ContractFactory, utils } = require('ethers')
-const ERC20Mock = require('../contracts/ERC20Mock.json')
 const { measureExecution } = require("./utils/measureExecution")
 const { choose1, randomEthAddress, randomEthValue } = require('./utils/random')
+const ERC20Mock = require('../contracts/ERC20Mock.json')
 
 const numApprovals = 10
 const oneMillionEth = utils.parseEther('1000000')
 const tenThousandEth = utils.parseEther('10000')
 
-exports.run = async function (runs) {
+exports.run = async function (runs, provider) {
   const wallets = provider.getWallets()
   const erc20Factory = new ContractFactory(ERC20Mock.abi, ERC20Mock.bytecode, wallets[0])
 

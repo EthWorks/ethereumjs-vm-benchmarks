@@ -1,2 +1,2 @@
-usePlugin("@nomiclabs/buidler-waffle");
-module.exports = {};
+usePlugin("@nomiclabs/buidler-waffle")
+module.exports = {}

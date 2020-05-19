@@ -1,3 +1,4 @@
+const { getFreshProvider } = require("./provider")
 const { average, std } = require("./utils/metrics")
 const { formatNanos, formatMs } = require("./utils/formatTime")
 const { run: run01 } = require('./01-eth-transfers')
@@ -9,7 +10,7 @@ const { run: run06 } = require('./06-many-storage')
 
 const scale = 1
 const samples = 10
-const logSampleTimes = false
+const logSampleTimes = true
 
 function log(name, runs, msg) {
   console.log(`${name} | samples: ${samples}, runs: ${runs} | ${msg}`);
@@ -17,14 +18,15 @@ function log(name, runs, msg) {
 
 async function benchmark(name, fn, runs) {
   runs = Math.ceil(runs)
+  let provider = getFreshProvider();
   const sampleTimes = new Array(samples)
 
   // warm-up
-  await fn(runs)
-  await fn(runs)
+  await fn(runs, provider)
+  await fn(runs, provider)
 
   for (let i = 0; i < samples; i++) {
-    sampleTimes[i] = await fn(runs)
+    sampleTimes[i] = await fn(runs, provider)
     if (logSampleTimes) {
       log(name, runs, `#${i + 1} sample time: ${formatNanos(sampleTimes[i])}`)
     }

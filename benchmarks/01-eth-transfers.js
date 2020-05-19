@@ -1,8 +1,7 @@
-const { provider } = require('./provider')
 const { measureExecution } = require('./utils/measureExecution')
 const { choose2, randomEthValue } = require('./utils/random')
 
-exports.run = async function (runs) {
+exports.run = async function (runs, provider) {
   const wallets = provider.getWallets()
   const data = new Array(runs)
 
@@ -22,5 +21,4 @@ exports.run = async function (runs) {
       await from.sendTransaction({ to: to.address, value })
     }
   })
-
 }

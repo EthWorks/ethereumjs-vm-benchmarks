@@ -1,6 +1,7 @@
-const bre = require("@nomiclabs/buidler");
-const {usePlugin} = require("@nomiclabs/buidler/internal/core/config/config-env")
+const { resetBuidlerContext } = require("@nomiclabs/buidler/internal/reset")
 
-usePlugin("@nomiclabs/buidler-waffle")
-
-exports.provider = bre.waffle.provider;
+exports.getFreshProvider = function () {
+  resetBuidlerContext()
+  const bre = require("@nomiclabs/buidler")
+  return bre.waffle.provider
+}
