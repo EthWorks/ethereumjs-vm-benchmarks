@@ -14,7 +14,7 @@ function formatMs(milliseconds) {
   const seconds = milliseconds / Math.pow(10, 3)
   const remainingMs = milliseconds - seconds * Math.pow(10, 3)
   const remainingNs = remainingMs * Math.pow(10, 6)
-  return prettyTime([seconds, remainingNs], 'ms')
+  return prettyTime([seconds, remainingNs], 'ms', 2)
 }
 
 module.exports = {

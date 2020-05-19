@@ -7,16 +7,16 @@ const { run: run04 } = require('./04-erc20-calls')
 const { run: run05 } = require('./05-erc20-storage')
 const { run: run06 } = require('./06-many-storage')
 
+const scale = 1
 const samples = 10
-const scale = 0.01
-const logSampleTimes = true
+const logSampleTimes = false
 
 function log(name, runs, msg) {
   console.log(`${name} | samples: ${samples}, runs: ${runs} | ${msg}`);
 }
 
-async function benchmark(name, fn, runsFrac) {
-  const runs = Math.ceil(runsFrac)
+async function benchmark(name, fn, runs) {
+  runs = Math.ceil(runs)
   const sampleTimes = new Array(samples)
 
   // warm-up
@@ -37,12 +37,12 @@ async function benchmark(name, fn, runsFrac) {
 }
 
 async function main() {
-  await benchmark('01 |   eth-transfers', run01, scale * 300)
-  await benchmark('02 | erc20-transfers', run02, scale * 200)
-  await benchmark('03 |   erc20-deploys', run03, scale * 125)
-  await benchmark('04 |     erc20-calls', run04, scale * 1200)
-  await benchmark('05 |   erc20-storage', run05, scale * 220)
-  await benchmark('06 |    many-storage', run06, scale * 12)
+  await benchmark('01 |   eth-transfers', run01, scale * 40)
+  await benchmark('02 | erc20-transfers', run02, scale * 25)
+  await benchmark('03 |   erc20-deploys', run03, scale * 10)
+  await benchmark('04 |     erc20-calls', run04, scale * 120)
+  await benchmark('05 |   erc20-storage', run05, scale * 30)
+  await benchmark('06 |    many-storage', run06, scale * 1)
 }
 
 main()
