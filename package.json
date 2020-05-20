@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "start": "node benchmarks/index.js",
+    "start:separate": "./scripts/benchmarkSeparately.sh",
     "inspect": "node --inspect-brk benchmarks/index.js",
     "verdaccio:run": "verdaccio --config verdaccio/config.yaml",
     "verdaccio:prepare": "rm -rf verdaccio/storage && cp -R verdaccio/prepared-storage verdaccio/storage",
