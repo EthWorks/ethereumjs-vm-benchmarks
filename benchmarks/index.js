@@ -1,6 +1,8 @@
 const { getFreshProvider } = require("./provider")
 const { average, std } = require("./utils/metrics")
 const { formatNanos, formatMs } = require("./utils/formatTime")
+const { fillProviderState } = require("./utils/state")
+const { getEnv } = require("./utils/getEnv")
 const { run: run01 } = require('./01-eth-transfers')
 const { run: run02 } = require('./02-erc20-transfers')
 const { run: run03 } = require('./03-erc20-deploys')
@@ -9,8 +11,9 @@ const { run: run05 } = require('./05-erc20-storage')
 const { run: run06 } = require('./06-many-storage')
 
 const scale = 1
-const samples = 10
-const logSampleTimes = true
+const samples = 1
+const logSampleTimes = getEnv('LOG_SAMPLE_TIMES', false)
+const initialState = getEnv('INITIAL_STATE', 'empty')
 
 function log(name, runs, msg) {
   console.log(`${name} | samples: ${samples}, runs: ${runs} | ${msg}`);
@@ -19,6 +22,11 @@ function log(name, runs, msg) {
 async function benchmark(name, fn, runs) {
   runs = Math.ceil(runs)
   let provider = getFreshProvider();
+
+  if (initialState !== 'empty') {
+    await fillProviderState(provider, 10)
+  }
+
   const sampleTimes = new Array(samples)
 
   // warm-up
