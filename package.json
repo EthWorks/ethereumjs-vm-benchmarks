@@ -2,8 +2,9 @@
   "name": "ethereumjs-vm-profiler",
   "private": true,
   "scripts": {
-    "start": "node benchmarks/index.js",
-    "start:separate": "./scripts/benchmarkSeparately.sh",
+    "start": "./scripts/benchmarkSeparately.sh",
+    "start:dirty": "INITIAL_STATE=dirty ./scripts/benchmarkSeparately.sh",
+    "benchmark": "node benchmarks/index.js",
     "inspect": "node --inspect-brk benchmarks/index.js",
     "verdaccio:run": "verdaccio --config verdaccio/config.yaml",
     "verdaccio:prepare": "rm -rf verdaccio/storage && cp -R verdaccio/prepared-storage verdaccio/storage",
