@@ -1,3 +1,7 @@
-const { MockProvider } = require('@ethereum-waffle/provider')
+const { resetBuidlerContext } = require("@nomiclabs/buidler/internal/reset")
 
-exports.provider = new MockProvider({ hardfork: 'istanbul' })
+exports.getFreshProvider = function () {
+  resetBuidlerContext()
+  const bre = require("@nomiclabs/buidler")
+  return bre.waffle.provider
+}
