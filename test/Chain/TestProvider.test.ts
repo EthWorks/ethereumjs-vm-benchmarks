@@ -27,6 +27,32 @@ describe('TestProvider', () => {
     expect(balance.eq(utils.parseEther('10'))).to.equal(true)
   })
 
+  it('supports sending multiple transactions', async () => {
+    const provider = await createTestProvider()
+    const [wallet] = provider.getWallets()
+    const other = Wallet.createRandom().connect(provider)
+
+    await wallet.sendTransaction({
+      to: other.address,
+      value: utils.parseEther('10'),
+    })
+
+    expect(await wallet.getTransactionCount()).to.equal(1)
+
+    const balance = await other.getBalance()
+    expect(balance.eq(utils.parseEther('10'))).to.equal(true)
+
+    await wallet.sendTransaction({
+      to: other.address,
+      value: utils.parseEther('10'),
+    })
+
+    expect(await wallet.getTransactionCount()).to.equal(2)
+
+    const balance2 = await other.getBalance()
+    expect(balance2.eq(utils.parseEther('20'))).to.equal(true)
+  })
+
   it('can get blocks', async () => {
     const provider = await createTestProvider()
     const [wallet, other] = provider.getWallets()
