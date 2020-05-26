@@ -1,4 +1,4 @@
-import VM from 'ethereumts-vm'
+import VM from '@nomiclabs/ethereumjs-vm'
 import Block from 'ethereumjs-block'
 import { ChainOptions } from '../ChainOptions'
 

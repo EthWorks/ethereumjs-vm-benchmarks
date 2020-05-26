@@ -1,4 +1,4 @@
-import VM from 'ethereumts-vm'
+import VM from '@nomiclabs/ethereumjs-vm'
 import Block from 'ethereumjs-block'
 
 export function getLatestBlock (vm: VM): Promise<Block> {

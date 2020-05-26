@@ -18,7 +18,7 @@ import { cloneDeep } from 'lodash'
 import { Transaction } from 'ethereumjs-tx'
 import { EventEmitter } from './utils/EventEmitter'
 // eslint-disable-next-line no-restricted-imports
-import { InterpreterStep } from 'ethereumts-vm/dist/evm/interpreter'
+import { InterpreterStep } from '@nomiclabs/ethereumjs-vm/dist/evm/interpreter'
 import { assert, SafeDictionary } from 'ts-essentials'
 import { ChainFilter } from './model/ChainFilter'
 

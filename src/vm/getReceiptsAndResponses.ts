@@ -12,7 +12,7 @@ import {
 import BN from 'bn.js'
 import { RpcTransactionResponse, RpcLogObject, RpcTransactionReceipt } from '../model'
 // eslint-disable-next-line
-import { RunTxResult } from 'ethereumts-vm/dist/runTx'
+import { RunTxResult } from '@nomiclabs/ethereumjs-vm/dist/runTx'
 
 export function getReceiptsAndResponses (block: Block, transactions: Transaction[], results: RunTxResult[]) {
   const blockHash = bufferToHash(block.hash())

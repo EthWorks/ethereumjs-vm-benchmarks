@@ -1,4 +1,4 @@
-import VM from 'ethereumts-vm'
+import VM from '@nomiclabs/ethereumjs-vm'
 import Common from 'ethereumjs-common'
 import Account from 'ethereumjs-account'
 import { toBuffer } from 'ethereumjs-util'

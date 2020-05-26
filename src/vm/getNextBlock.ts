@@ -1,5 +1,5 @@
 import Block, { BlockHeaderData } from 'ethereumjs-block'
-import VM from 'ethereumts-vm'
+import VM from '@nomiclabs/ethereumjs-vm'
 import { Transaction } from 'ethereumjs-tx'
 import BN from 'bn.js'
 import { toBuffer } from 'ethereumjs-util'
