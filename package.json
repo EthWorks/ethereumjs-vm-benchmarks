@@ -7,14 +7,15 @@
     "benchmark": "node benchmarks/index.js",
     "prebuild": "rm -rf dist",
     "build": "tsc -p tsconfig.build.json",
+    "test": "mocha",
     "verdaccio:run": "verdaccio --config verdaccio/config.yaml",
     "verdaccio:prepare": "rm -rf verdaccio/storage && cp -R verdaccio/prepared-storage verdaccio/storage",
     "verdaccio:install": "npm install --registry 'http://localhost:4873'"
   },
   "dependencies": {
-    "@nomiclabs/ethereumjs-vm": "^4.1.1",
+    "@nomiclabs/ethereumjs-vm": "4.1.2",
     "ethereumjs-account": "^3.0.0",
-    "ethereumjs-block": "^2.2.1",
+    "ethereumjs-block": "2.2.3",
     "ethereumjs-blockchain": "^4.0.2",
     "ethereumjs-common": "^1.4.0",
     "ethereumjs-tx": "^2.1.1",
