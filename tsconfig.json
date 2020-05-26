@@ -3,10 +3,12 @@
     "declaration": true,
     "esModuleInterop": true,
     "lib": [
+      "DOM",
       "ES2018"
     ],
     "module": "CommonJS",
     "moduleResolution": "node",
+    "outDir": "dist",
     "skipLibCheck": true,
     "strict": true,
     "target": "ES2018"

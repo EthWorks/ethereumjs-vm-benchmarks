@@ -5,7 +5,8 @@
     "start": "./scripts/benchmarkSeparately.sh",
     "start:dirty": "INITIAL_STATE=dirty ./scripts/benchmarkSeparately.sh",
     "benchmark": "node benchmarks/index.js",
-    "inspect": "node --inspect-brk benchmarks/index.js",
+    "prebuild": "rm -rf dist",
+    "build": "tsc -p tsconfig.build.json",
     "verdaccio:run": "verdaccio --config verdaccio/config.yaml",
     "verdaccio:prepare": "rm -rf verdaccio/storage && cp -R verdaccio/prepared-storage verdaccio/storage",
     "verdaccio:install": "npm install --registry 'http://localhost:4873'"
