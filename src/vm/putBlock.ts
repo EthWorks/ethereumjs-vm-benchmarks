@@ -12,8 +12,8 @@ export async function putBlock (vm: VM, transactions: Transaction[], options: Ch
     block,
     generate: true,
     skipBlockValidation: true,
-    skipNonce: options.skipNonceCheck,
-    skipBalance: options.skipBalanceCheck,
+    // skipNonce: options.skipNonceCheck,
+    // skipBalance: options.skipBalanceCheck,
   })
   await new Promise((resolve, reject) => {
     vm.blockchain.putBlock(block, (err: unknown, block: Block) =>
