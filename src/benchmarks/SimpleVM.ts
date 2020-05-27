@@ -1,10 +1,11 @@
 import VM from '@nomiclabs/ethereumjs-vm'
-import { Address, bufferToHash, bufferToQuantity, Hash, HexData } from "../model/primitives"
+import { Address, bufferToHash, bufferToHexData, bufferToQuantity, Hash, HexData } from '../model/primitives'
 import { Transaction } from 'ethereumjs-tx'
-import { putBlock } from "../vm/putBlock"
-import { ChainOptions } from "../ChainOptions"
-import { initializeVM } from "../vm/initializeVM"
+import { putBlock } from '../vm/putBlock'
+import { ChainOptions } from '../ChainOptions'
+import { initializeVM } from '../vm/initializeVM'
 import { toBuffer } from 'ethereumjs-util'
+import { runIsolatedTransaction } from '../vm/runIsolatedTransaction'
 
 export class SimpleVM {
   vm!: VM
@@ -20,9 +21,13 @@ export class SimpleVM {
     this.vm = await initializeVM(this.options)
   }
 
-  async getNonce (address: Address) {
-    const account = await this.getAccount(address)
-    return bufferToQuantity(account.nonce)
+  private async getAccount (address: Address) {
+    return this.stateManager.getAccount(toBuffer(address))
+  }
+
+  async getCode (address: Address) {
+    const code = await this.stateManager.getContractCode(toBuffer(address))
+    return bufferToHexData(code)
   }
 
   async getBalance (address: Address) {
@@ -30,8 +35,9 @@ export class SimpleVM {
     return bufferToQuantity(account.balance)
   }
 
-  private async getAccount (address: Address) {
-    return this.stateManager.getAccount(toBuffer(address))
+  async getNonce (address: Address) {
+    const account = await this.getAccount(address)
+    return bufferToQuantity(account.nonce)
   }
 
   async addPendingTransaction (signedTransaction: HexData): Promise<Hash> {
@@ -45,5 +51,9 @@ export class SimpleVM {
     this.pendingTransactions = []
 
     await putBlock(this.vm, transactions, this.options, clockSkew)
+  }
+
+  async runIsolatedTransaction (transaction: Transaction, clockSkew: number) {
+    return runIsolatedTransaction(this.vm, transaction, this.options, clockSkew)
   }
 }

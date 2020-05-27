@@ -332,15 +332,6 @@
     "no-unreachable": "error",
     "no-unsafe-finally": "error",
     "no-unsafe-negation": "error",
-    "no-restricted-imports": [
-      "error",
-      {
-        "patterns": [
-          "dist",
-          "ethers/*"
-        ]
-      }
-    ],
     "no-use-before-define": [
       "error",
       {
@@ -514,6 +505,7 @@
       ],
       "rules": {
         "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
         "no-unused-expressions": "off"
       }

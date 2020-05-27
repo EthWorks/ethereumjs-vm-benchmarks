@@ -1,7 +1,8 @@
 import { providers, Wallet } from 'ethers'
-import { SimpleChain } from "./SimpleChain"
-import { makeAddress } from "../model/primitives"
-import { unsupportedOperation } from "../errors"
+import { SimpleChain } from './SimpleChain'
+import { makeAddress } from '../model/primitives'
+import { unsupportedOperation } from '../errors'
+import { toRpcTransactionRequest } from '../model'
 
 export class SimpleProvider extends providers.BaseProvider {
   private readonly wallets: Wallet[]
@@ -23,6 +24,10 @@ export class SimpleProvider extends providers.BaseProvider {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async perform (method: string, params: any) {
     switch (method) {
+      case 'call':
+        return this.chain.call(toRpcTransactionRequest(params.transaction), params.blockTag)
+      case 'getCode':
+        return this.chain.getCode(makeAddress(params.address), params.blockTag)
       case 'getBalance':
         return this.chain.getBalance(makeAddress(params.address), params.blockTag)
       case 'getTransactionCount':

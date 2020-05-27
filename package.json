@@ -8,6 +8,8 @@
     "prebuild": "rm -rf dist",
     "build": "tsc -p tsconfig.build.json",
     "test": "mocha",
+    "lint": "eslint --ext .ts src test",
+    "lint:fix": "yarn lint --fix",
     "verdaccio:run": "verdaccio --config verdaccio/config.yaml",
     "verdaccio:prepare": "rm -rf verdaccio/storage && cp -R verdaccio/prepared-storage verdaccio/storage",
     "verdaccio:install": "npm install --registry 'http://localhost:4873'"
