@@ -1,8 +1,14 @@
-import { Address, Hash, HexData, Quantity } from "../model/primitives"
+import { Address, bnToQuantity, Hash, HexData, Quantity } from "../model/primitives"
 import { ChainOptions, getChainOptionsWithDefaults } from "../ChainOptions"
 import { Tag } from "../model"
 import { unsupportedBlockTag } from "../errors"
 import { SimpleVM } from "./SimpleVM"
+
+export async function createSimpleChain (options?: Partial<ChainOptions>) {
+  const chain = new SimpleChain(options)
+  await chain.init()
+  return chain
+}
 
 export class SimpleChain {
   private vm: SimpleVM

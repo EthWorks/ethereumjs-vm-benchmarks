@@ -1,27 +1,13 @@
 import { providers, Wallet } from 'ethers'
-import { TestProviderOptions, toTestChainOptions } from "../../test/Chain/TestProviderOptions"
 import { SimpleChain } from "./SimpleChain"
 import { makeAddress } from "../model/primitives"
 import { unsupportedOperation } from "../errors"
 
-export async function createSimpleProvider (chainOrOptions?: SimpleChain | TestProviderOptions) {
-  const provider = new SimpleProvider(chainOrOptions)
-  await provider.init()
-  return provider
-}
-
 export class SimpleProvider extends providers.BaseProvider {
-  private chain: SimpleChain
-  private wallets: Wallet[]
+  private readonly wallets: Wallet[]
 
-  constructor (chainOrOptions?: SimpleChain | TestProviderOptions) {
+  constructor (private chain: SimpleChain) {
     super({ name: 'simple', chainId: 1337 })
-
-    if (chainOrOptions instanceof SimpleChain) {
-      this.chain = chainOrOptions
-    } else {
-      this.chain = new SimpleChain(toTestChainOptions(chainOrOptions))
-    }
     this.wallets = this.chain.options.accounts.privateKeys
       .map(pk => new Wallet(pk, this))
   }
@@ -32,10 +18,6 @@ export class SimpleProvider extends providers.BaseProvider {
 
   createEmptyWallet () {
     return Wallet.createRandom().connect(this)
-  }
-
-  async init () {
-    await this.chain.init()
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
