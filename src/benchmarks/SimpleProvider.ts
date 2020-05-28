@@ -30,6 +30,8 @@ export class SimpleProvider extends providers.BaseProvider {
         return this.chain.getCode(makeAddress(params.address), params.blockTag)
       case 'getBalance':
         return this.chain.getBalance(makeAddress(params.address), params.blockTag)
+      case 'getBlockNumber':
+        return this.chain.getBlockNumber()
       case 'getTransactionCount':
         return this.chain.getTransactionCount(makeAddress(params.address), params.blockTag)
       case 'sendTransaction':

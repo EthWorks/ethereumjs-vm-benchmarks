@@ -1,11 +1,12 @@
 import VM from '@nomiclabs/ethereumjs-vm'
-import { Address, bufferToHash, bufferToHexData, bufferToQuantity, Hash, HexData } from '../model/primitives'
+import { Address, bufferToHash, bufferToHexData, bufferToQuantity, Hash, HexData, Quantity } from '../model/primitives'
 import { Transaction } from 'ethereumjs-tx'
 import { putBlock } from '../vm/putBlock'
 import { ChainOptions } from '../ChainOptions'
 import { initializeVM } from '../vm/initializeVM'
 import { toBuffer } from 'ethereumjs-util'
 import { runIsolatedTransaction } from '../vm/runIsolatedTransaction'
+import { getLatestBlock } from '../vm/getLatestBlock'
 
 export class SimpleVM {
   vm!: VM
@@ -38,6 +39,11 @@ export class SimpleVM {
   async getNonce (address: Address) {
     const account = await this.getAccount(address)
     return bufferToQuantity(account.nonce)
+  }
+
+  async getBlockNumber (): Promise<Quantity> {
+    const block = await getLatestBlock(this.vm)
+    return bufferToQuantity(block.header.number)
   }
 
   async addPendingTransaction (signedTransaction: HexData): Promise<Hash> {

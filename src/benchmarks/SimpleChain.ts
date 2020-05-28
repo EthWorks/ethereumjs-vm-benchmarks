@@ -37,6 +37,10 @@ export class SimpleChain {
     return this.vm.getBalance(address)
   }
 
+  async getBlockNumber (): Promise<Quantity> {
+    return this.vm.getBlockNumber()
+  }
+
   async getTransactionCount (address: Address, blockTag: Quantity | Tag): Promise<Quantity> {
     if (blockTag !== 'latest' && blockTag !== 'pending') {
       throw unsupportedBlockTag('getTransactionCount', blockTag, ['latest', 'pending'])
