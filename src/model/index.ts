@@ -1,5 +1,3 @@
-export * from './BlockResponse'
-export * from './FilterRequest'
 export * from './strings'
 export * from './RpcTransactionReceipt'
 export * from './RpcLogObject'

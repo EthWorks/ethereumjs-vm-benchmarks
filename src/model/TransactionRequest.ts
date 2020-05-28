@@ -59,31 +59,3 @@ export function toRpcTransactionRequest (transaction: EthersTxRequest): RpcTrans
   }
   return result
 }
-
-export function toEthersTransaction (tx: RpcTransactionRequest): EthersTxRequest {
-  const result: EthersTxRequest = {}
-
-  if (tx.data) {
-    result.data = tx.data
-  }
-  if (tx.from) {
-    result.from = tx.from
-  }
-  if (tx.gas) {
-    result.gasLimit = tx.gas
-  }
-  if (tx.gasPrice) {
-    result.gasPrice = tx.gasPrice
-  }
-  if (tx.nonce) {
-    result.nonce = tx.nonce
-  }
-  if (tx.to) {
-    result.to = tx.to
-  }
-  if (tx.value) {
-    result.value = tx.value
-  }
-
-  return result
-}
