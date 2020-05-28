@@ -1,12 +1,12 @@
 import VM from '@nomiclabs/ethereumjs-vm'
 import { Address, bufferToHash, bufferToHexData, bufferToQuantity, Hash, HexData, Quantity } from '../model/primitives'
 import { Transaction } from 'ethereumjs-tx'
-import { putBlock } from '../vm/putBlock'
+import { putBlock } from './putBlock'
 import { ChainOptions } from '../ChainOptions'
-import { initializeVM } from '../vm/initializeVM'
+import { initializeVM } from './initializeVM'
 import { toBuffer } from 'ethereumjs-util'
-import { runIsolatedTransaction } from '../vm/runIsolatedTransaction'
-import { getLatestBlock } from '../vm/getLatestBlock'
+import { runIsolatedTransaction } from './runIsolatedTransaction'
+import { getLatestBlock } from './getLatestBlock'
 
 export class SimpleVM {
   vm!: VM

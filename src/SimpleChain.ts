@@ -1,8 +1,8 @@
-import { Address, bnToQuantity, bufferToHexData, Hash, HexData, Quantity } from '../model/primitives'
-import { ChainOptions, getChainOptionsWithDefaults } from '../ChainOptions'
-import { RpcTransactionRequest, Tag, toFakeTransaction } from '../model'
-import { unsupportedBlockTag } from '../errors'
-import { SimpleVM } from './SimpleVM'
+import { Address, bnToQuantity, bufferToHexData, Hash, HexData, Quantity } from './model/primitives'
+import { ChainOptions, getChainOptionsWithDefaults } from './ChainOptions'
+import { RpcTransactionRequest, Tag, toFakeTransaction } from './model'
+import { unsupportedBlockTag } from './errors'
+import { SimpleVM } from './vm/SimpleVM'
 
 export async function createSimpleChain (options?: Partial<ChainOptions>) {
   const chain = new SimpleChain(options)

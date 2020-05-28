@@ -1,8 +1,8 @@
 import { providers, Wallet } from 'ethers'
 import { SimpleChain } from './SimpleChain'
-import { makeAddress } from '../model/primitives'
-import { unsupportedOperation } from '../errors'
-import { toRpcTransactionRequest } from '../model'
+import { makeAddress } from './model/primitives'
+import { unsupportedOperation } from './errors'
+import { toRpcTransactionRequest } from './model'
 
 export class SimpleProvider extends providers.BaseProvider {
   private readonly wallets: Wallet[]
