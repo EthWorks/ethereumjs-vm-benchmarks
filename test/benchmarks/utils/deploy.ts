@@ -1,7 +1,7 @@
 import { Wallet, Contract } from 'ethers'
 import { parseEther } from 'ethers/utils'
 import { getERC20DeploymentTransaction } from './transactions'
-import { SimpleChain } from '../../../src/benchmarks/SimpleChain'
+import { SimpleChain } from '../../../src/chain/SimpleChain'
 const ERC20Mock = require('../../../contracts/ERC20Mock.json')
 
 export async function deployERC20 (deployer: Wallet, chain: SimpleChain) {
