@@ -8,7 +8,7 @@ import { deployERC20 } from './utils/deploy'
 
 const ERC20Mock = require('../../contracts/ERC20Mock.json')
 
-describe('ERC20 Deploys', () => {
+describe('ERC20 deploys', () => {
   let chain: SimpleChain
   let provider: SimpleProvider
 

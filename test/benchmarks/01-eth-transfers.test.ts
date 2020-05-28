@@ -4,7 +4,7 @@ import { createSimpleChain, SimpleChain } from '../../src/benchmarks/SimpleChain
 import { parseEther } from 'ethers/utils'
 import { getEthTransferTransaction } from './utils/transactions'
 
-describe('ETH Transfers', () => {
+describe('ETH transfers', () => {
   let chain: SimpleChain
   let provider: SimpleProvider
 

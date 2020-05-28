@@ -7,7 +7,7 @@ import { createSimpleChain, SimpleChain } from '../../src/benchmarks/SimpleChain
 import { getERC20TransferTransaction } from './utils/transactions'
 import { deployERC20 } from './utils/deploy'
 
-describe('ERC20 Transfers', () => {
+describe('ERC20 transfers', () => {
   let chain: SimpleChain
   let provider: SimpleProvider
   let deployer: Wallet
@@ -40,24 +40,34 @@ describe('ERC20 Transfers', () => {
   })
 
   it('supports multiple ERC20 transfers', async () => {
-    const other = provider.createEmptyWallet()
+    const [deployer, other] = provider.getWallets()
 
     const transferParams = {
       tokenAddress: token.address,
       from: deployer,
       to: other,
-      value: parseEther('1'),
+      value: parseEther('2'),
     }
-
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       const transfer = await getERC20TransferTransaction(transferParams)
       await chain.sendTransaction(transfer)
+    }
+
+    const refundParams = {
+      tokenAddress: token.address,
+      from: other,
+      to: deployer,
+      value: parseEther('1'),
+    }
+    for (let i = 0; i < 5; i++) {
+      const refundTransfer = await getERC20TransferTransaction(refundParams)
+      await chain.sendTransaction(refundTransfer)
     }
 
     const deployerBalance = await token.balanceOf(deployer.address)
     const otherBalance = await token.balanceOf(other.address)
 
-    expect(deployerBalance.eq(parseEther('90'))).to.be.true
-    expect(otherBalance.eq(parseEther('10'))).to.be.true
+    expect(deployerBalance.eq(parseEther('95'))).to.be.true
+    expect(otherBalance.eq(parseEther('5'))).to.be.true
   })
 })

@@ -34,22 +34,22 @@ describe('ERC20 calls', () => {
     const transfer = await getERC20TransferTransaction(transferParams)
     await chain.sendTransaction(transfer)
 
-    const balanceOfDeployer = await getERC20BalanceOfCall(token.address, deployer.address)
+    const balanceOfDeployer = getERC20BalanceOfCall(token.address, deployer.address)
     const hexDeployerBalance = await chain.call(balanceOfDeployer, 'latest')
     expect(parseEther('99').eq(hexDeployerBalance)).to.be.true
 
-    const balanceOfOther = await getERC20BalanceOfCall(token.address, other.address)
+    const balanceOfOther = getERC20BalanceOfCall(token.address, other.address)
     const hexOtherBalance = await chain.call(balanceOfOther, 'latest')
     expect(parseEther('1').eq(hexOtherBalance)).to.be.true
 
-    const balanceOfEmpty = await getERC20BalanceOfCall(token.address, empty.address)
+    const balanceOfEmpty = getERC20BalanceOfCall(token.address, empty.address)
     const hexEmptyBalance = await chain.call(balanceOfEmpty, 'latest')
     expect(parseEther('0').eq(hexEmptyBalance)).to.be.true
   })
 
   it('supports multiple balanceOf calls', async () => {
     for (let i = 0; i < 10; i++) {
-      const balanceOf = await getERC20BalanceOfCall(token.address, deployer.address)
+      const balanceOf = getERC20BalanceOfCall(token.address, deployer.address)
       const hexBalance = await chain.call(balanceOf, 'latest')
       expect(parseEther('100').eq(hexBalance)).to.be.true
     }
