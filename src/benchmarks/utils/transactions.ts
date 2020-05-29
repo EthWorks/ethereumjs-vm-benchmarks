@@ -1,4 +1,4 @@
-import { DEFAULT_CHAIN_OPTIONS, makeHexData } from '../../../src/chain'
+import { DEFAULT_CHAIN_OPTIONS, makeHexData } from '../../chain'
 import { ContractFactory, Wallet } from 'ethers'
 import { BigNumber, bigNumberify, getContractAddress, Interface } from 'ethers/utils'
 import { TransactionRequest } from 'ethers/providers'

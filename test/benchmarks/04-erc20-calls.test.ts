@@ -3,9 +3,9 @@ import { Wallet } from 'ethers'
 import { Contract } from 'ethers/contract'
 import { parseEther } from 'ethers/utils'
 import { createSimpleChain, SimpleChain, SimpleProvider } from '../../src/chain'
-import { deployERC20 } from './utils/deploy'
-import { getERC20BalanceOfCall } from './utils/calls'
-import { getERC20TransferTransaction } from './utils/transactions'
+import { deployERC20 } from '../../src/benchmarks/utils/deploy'
+import { getERC20BalanceOfCall } from '../../src/benchmarks/utils/calls'
+import { getERC20TransferTransaction } from '../../src/benchmarks/utils/transactions'
 
 describe('ERC20 calls', () => {
   let chain: SimpleChain

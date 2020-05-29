@@ -1,8 +1,8 @@
 import { Wallet } from 'ethers'
 import { Contract } from 'ethers/contract'
 import { createSimpleChain, SimpleChain, SimpleProvider } from '../../src/chain'
-import { deployERC20 } from './utils/deploy'
-import { getERC20ApproveTransaction } from './utils/transactions'
+import { deployERC20 } from '../../src/benchmarks/utils/deploy'
+import { getERC20ApproveTransaction } from '../../src/benchmarks/utils/transactions'
 import { parseEther } from 'ethers/utils'
 import { expect } from 'chai'
 

@@ -1,5 +1,5 @@
 import { Interface } from 'ethers/utils'
-import { toRpcTransactionRequest } from '../../../src/chain/model'
+import { toRpcTransactionRequest } from '../../chain/model'
 const ERC20Mock = require('../../../contracts/ERC20Mock.json')
 
 export function getERC20BalanceOfCall (tokenAddress: string, accountAddress: string) {

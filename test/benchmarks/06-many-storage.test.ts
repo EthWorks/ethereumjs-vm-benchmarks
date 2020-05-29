@@ -1,10 +1,10 @@
 import { Wallet } from 'ethers'
 import { Contract } from 'ethers/contract'
 import { createSimpleChain, SimpleChain, SimpleProvider } from '../../src/chain'
-import { deployERC20 } from './utils/deploy'
-import { getERC20ApproveTransaction, getERC20TransferTransaction } from './utils/transactions'
+import { deployERC20 } from '../../src/benchmarks/utils/deploy'
+import { getERC20ApproveTransaction, getERC20TransferTransaction } from '../../src/benchmarks/utils/transactions'
 import { parseEther } from 'ethers/utils'
-import { randomEthValue } from './utils/random'
+import { randomEthValue } from '../../src/benchmarks/utils/random'
 import { expect } from 'chai'
 
 describe('Many storage', () => {

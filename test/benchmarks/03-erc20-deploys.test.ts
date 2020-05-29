@@ -2,8 +2,8 @@ import { expect } from 'chai'
 import { parseEther } from 'ethers/utils'
 import { Contract } from 'ethers/contract'
 import { createSimpleChain, SimpleChain, SimpleProvider } from '../../src/chain'
-import { getERC20DeploymentTransaction } from './utils/transactions'
-import { deployERC20 } from './utils/deploy'
+import { getERC20DeploymentTransaction } from '../../src/benchmarks/utils/transactions'
+import { deployERC20 } from '../../src/benchmarks/utils/deploy'
 
 const ERC20Mock = require('../../contracts/ERC20Mock.json')
 

@@ -1,5 +1,7 @@
-const { ContractFactory, utils } = require('ethers')
-const { choose1, choose2, randomEthAddress, randomEthValue } = require("./random")
+import { SimpleProvider } from '../../chain'
+import { ContractFactory, utils } from 'ethers'
+import { choose1, choose2, randomEthAddress, randomEthValue } from './random'
+
 const ERC20Mock = require('../../../contracts/ERC20Mock.json')
 
 /**
@@ -8,7 +10,7 @@ const ERC20Mock = require('../../../contracts/ERC20Mock.json')
  * @param provider to populate with data
  * @returns {Promise<void>}
  */
-exports.fillProviderState = async function (provider, scale) {
+export async function fillProviderState (provider: SimpleProvider, scale: number) {
   const wallets = provider.getWallets()
   const erc20Factory = new ContractFactory(ERC20Mock.abi, ERC20Mock.bytecode, wallets[0])
   const token = await erc20Factory.deploy(wallets[0].address, utils.parseEther('1000000'))
@@ -31,14 +33,13 @@ exports.fillProviderState = async function (provider, scale) {
     await token.connect(from).transfer(to.address, value)
   }
 
-
   // ERC20 deploys
   for (let i = 0; i < scale * 10; i++) {
     const wallet = choose1(wallets)
     const factory = erc20Factory.connect(wallet)
     await factory.deploy(
       wallet.address,
-      randomEthValue(40, 500)
+      randomEthValue(40, 500),
     )
   }
 

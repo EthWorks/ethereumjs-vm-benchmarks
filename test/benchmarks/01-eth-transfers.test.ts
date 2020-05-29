@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { createSimpleChain, SimpleChain, SimpleProvider } from '../../src/chain'
 import { parseEther } from 'ethers/utils'
-import { getEthTransferTransaction } from './utils/transactions'
+import { getEthTransferTransaction } from '../../src/benchmarks/utils/transactions'
 
 describe('ETH transfers', () => {
   let chain: SimpleChain
