@@ -1,19 +1,14 @@
-const { std: libStd } = require('mathjs')
+import { std as libStd } from 'mathjs'
 
-function average(sampleTimes) {
+export function average(sampleTimes: bigint[]) {
   const totalTime = sampleTimes.reduce((sum, current) => sum + current, BigInt(0))
   return totalTime / BigInt(sampleTimes.length)
 }
 
-function std(sampleTimes) {
+export function std(sampleTimes: bigint[]) {
   const msTimes = sampleTimes
     .map((ns) => ns / BigInt(Math.pow(10, 6)))
     .map((bigint) => Number(bigint))
 
   return libStd(msTimes, 'uncorrected')
-}
-
-module.exports = {
-  average,
-  std
 }
