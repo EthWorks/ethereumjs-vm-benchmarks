@@ -1,6 +1,6 @@
 const { ContractFactory, utils } = require('ethers')
 const { choose1, choose2, randomEthAddress, randomEthValue } = require("./random")
-const ERC20Mock = require('../../contracts/ERC20Mock.json')
+const ERC20Mock = require('../../../contracts/ERC20Mock.json')
 
 /**
  * Fill provider with state

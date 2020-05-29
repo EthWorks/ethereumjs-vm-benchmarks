@@ -1,7 +1,7 @@
 const { ContractFactory, utils } = require('ethers')
 const { measureExecution } = require("./utils/measureExecution")
 const { choose1, randomEthAddress, randomEthValue } = require('./utils/random')
-const ERC20Mock = require('../contracts/ERC20Mock.json')
+const ERC20Mock = require('../../contracts/ERC20Mock.json')
 
 const numApprovals = 10
 const oneMillionEth = utils.parseEther('1000000')
