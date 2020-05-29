@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { parseEther } from 'ethers/utils'
 import { Contract } from 'ethers/contract'
-import { createSimpleChain, SimpleChain, SimpleProvider } from '../../src'
+import { createSimpleChain, SimpleChain, SimpleProvider } from '../../src/chain'
 import { getERC20DeploymentTransaction } from './utils/transactions'
 import { deployERC20 } from './utils/deploy'
 

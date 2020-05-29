@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { createSimpleChain, SimpleChain, SimpleProvider } from '../../src'
+import { createSimpleChain, SimpleChain, SimpleProvider } from '../../src/chain'
 import { parseEther } from 'ethers/utils'
 import { getEthTransferTransaction } from './utils/transactions'
 
