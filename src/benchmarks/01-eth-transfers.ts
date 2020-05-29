@@ -1,7 +1,8 @@
-const { measureExecution } = require('./utils/measureExecution')
-const { choose2, randomEthValue } = require('./utils/random')
+import { SimpleProvider } from '../chain'
+import { measureExecution } from './utils/measureExecution'
+import { choose2, randomEthValue } from './utils/random'
 
-exports.run = async function (runs, provider) {
+export async function run (runs: number, provider: SimpleProvider) {
   const wallets = provider.getWallets()
   const data = new Array(runs)
 
@@ -11,7 +12,7 @@ exports.run = async function (runs, provider) {
     data[i] = {
       from,
       to,
-      value
+      value,
     }
   }
 

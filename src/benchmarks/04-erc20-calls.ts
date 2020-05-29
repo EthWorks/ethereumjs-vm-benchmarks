@@ -1,9 +1,11 @@
-const { ContractFactory, utils } = require('ethers')
-const { measureExecution } = require("./utils/measureExecution")
-const { choose1 } = require('./utils/random')
+import { SimpleProvider } from '../chain'
+import { ContractFactory, utils } from 'ethers'
+import { measureExecution } from './utils/measureExecution'
+import { choose1 } from './utils/random'
+
 const ERC20Mock = require('../../contracts/ERC20Mock.json')
 
-exports.run = async function (runs, provider) {
+export async function run (runs: number, provider: SimpleProvider) {
   const wallets = provider.getWallets()
   const erc20Factory = new ContractFactory(ERC20Mock.abi, ERC20Mock.bytecode, wallets[0])
   const token = await erc20Factory.deploy(wallets[0].address, utils.parseEther('1000000'))
@@ -18,7 +20,7 @@ exports.run = async function (runs, provider) {
     data[i] = choose1(wallets)
   }
 
-  return measureExecution(async function() {
+  return measureExecution(async function () {
     for (let i = 0; i < runs; i++) {
       const holder = data[i]
       await token.balanceOf(holder.address)
