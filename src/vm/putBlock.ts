@@ -3,12 +3,11 @@ import Block from 'ethereumjs-block'
 import { Transaction } from 'ethereumjs-tx'
 import { ChainOptions } from '../ChainOptions'
 import { getNextBlock } from './getNextBlock'
-import { getReceiptsAndResponses } from './getReceiptsAndResponses'
 
 export async function putBlock (vm: VM, transactions: Transaction[], options: ChainOptions, clockSkew: number) {
   const block = await getNextBlock(vm, transactions, options, clockSkew)
 
-  const { results } = await vm.runBlock({
+  await vm.runBlock({
     block,
     generate: true,
     skipBlockValidation: true,
@@ -20,6 +19,4 @@ export async function putBlock (vm: VM, transactions: Transaction[], options: Ch
       err != null ? reject(err) : resolve(block),
     )
   })
-
-  return getReceiptsAndResponses(block, transactions, results)
 }

@@ -1,6 +1,3 @@
 export * from './strings'
-export * from './RpcTransactionReceipt'
-export * from './RpcLogObject'
 export * from './TransactionRequest'
-export * from './RpcTransactionResponse'
 export * from './primitives'
