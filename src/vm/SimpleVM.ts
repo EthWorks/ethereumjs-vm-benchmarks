@@ -10,7 +10,6 @@ import { getLatestBlock } from './getLatestBlock'
 
 export class SimpleVM {
   vm!: VM
-  pendingTransactions: Transaction[] = []
 
   get stateManager () {
     return this.vm.pStateManager
@@ -46,17 +45,10 @@ export class SimpleVM {
     return bufferToQuantity(block.header.number)
   }
 
-  async addPendingTransaction (signedTransaction: HexData): Promise<Hash> {
+  async mineBlockWithTransaction (signedTransaction: HexData, clockSkew: number): Promise<Hash> {
     const transaction = new Transaction(signedTransaction, { common: this.vm._common })
-    this.pendingTransactions.push(transaction)
+    await putBlock(this.vm, [transaction], this.options, clockSkew)
     return bufferToHash(transaction.hash())
-  }
-
-  async mineBlock (clockSkew: number) {
-    const transactions = this.pendingTransactions
-    this.pendingTransactions = []
-
-    await putBlock(this.vm, transactions, this.options, clockSkew)
   }
 
   async runIsolatedTransaction (transaction: Transaction, clockSkew: number) {

@@ -8,7 +8,7 @@ export class SimpleProvider extends providers.BaseProvider {
   private readonly wallets: Wallet[]
 
   constructor (private chain: SimpleChain) {
-    super({ name: 'simple', chainId: 1337 })
+    super({ name: 'simple', chainId: 1234 })
     this.wallets = this.chain.options.accounts.privateKeys
       .map(pk => new Wallet(pk, this))
   }

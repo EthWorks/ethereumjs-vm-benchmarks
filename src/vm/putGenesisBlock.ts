@@ -10,7 +10,7 @@ export async function putGenesisBlock (vm: VM, options: ChainOptions) {
       gasLimit: options.blockGasLimit,
       gasUsed: '0x00',
       nonce: 0x42,
-      extraData: '0x1337',
+      extraData: '0x1234',
       number: 0,
       parentHash: '0x' + '0'.repeat(64),
       timestamp: 0,

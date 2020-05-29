@@ -11,7 +11,6 @@ export interface ChainOptions {
   chainId: number,
   chainName: string,
   clockSkew: number,
-  autoMining: boolean,
   skipNonceCheck: boolean,
   skipBalanceCheck: boolean,
   accounts: {
@@ -41,9 +40,8 @@ export const DEFAULT_CHAIN_OPTIONS: ChainOptions = {
   blockGasLimit: new BN(10_000_000),
   defaultGasPrice: new BN(1_000_000_000), // one gwei
   coinbaseAddress: '0xdEadBeEf00000000DeADBeef00000000dEAdBeeF',
-  chainId: 1337,
-  chainName: 'deth/0.0.1', // todo real version here
-  autoMining: true,
+  chainId: 1234,
+  chainName: 'simple/0.0.1',
   clockSkew: 0,
   skipNonceCheck: true,
   skipBalanceCheck: false,

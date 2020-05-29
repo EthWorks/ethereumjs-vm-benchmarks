@@ -61,10 +61,6 @@ export class SimpleChain {
   }
 
   async sendTransaction (signedTransaction: HexData): Promise<Hash> {
-    const hash = await this.vm.addPendingTransaction(signedTransaction)
-    if (this.options.autoMining) {
-      await this.vm.mineBlock(this.options.clockSkew)
-    }
-    return hash
+    return this.vm.mineBlockWithTransaction(signedTransaction, this.options.clockSkew)
   }
 }
