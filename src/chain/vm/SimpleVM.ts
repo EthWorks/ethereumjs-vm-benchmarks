@@ -51,7 +51,7 @@ export class SimpleVM {
     return bufferToHash(transaction.hash())
   }
 
-  async runIsolatedTransaction (transaction: Transaction, clockSkew: number) {
-    return runIsolatedTransaction(this.vm, transaction, this.options, clockSkew)
+  async runIsolatedTransaction (transaction: Transaction) {
+    return runIsolatedTransaction(this.vm, transaction, this.options)
   }
 }

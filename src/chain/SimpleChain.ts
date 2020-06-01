@@ -56,7 +56,7 @@ export class SimpleChain {
       ...transactionRequest,
       gas: bnToQuantity(this.options.blockGasLimit),
     })
-    const result = await this.vm.runIsolatedTransaction(tx, this.options.clockSkew)
+    const result = await this.vm.runIsolatedTransaction(tx)
     return bufferToHexData(result.execResult.returnValue)
   }
 

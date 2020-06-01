@@ -2,22 +2,21 @@ import VM from '@nomiclabs/ethereumjs-vm'
 import { Transaction } from 'ethereumjs-tx'
 // eslint-disable-next-line no-restricted-imports
 import { RunTxResult } from '@nomiclabs/ethereumjs-vm/dist/runTx'
-import { getNextBlock } from './getNextBlock'
 import { ChainOptions } from '../ChainOptions'
+import { getLatestBlock } from './getLatestBlock'
 
 export async function runIsolatedTransaction (
   vm: VM,
   transaction: Transaction,
   options: ChainOptions,
-  clockSkew: number,
 ): Promise<RunTxResult> {
   const psm = vm.pStateManager
   const initialStateRoot = await psm.getStateRoot()
 
   try {
-    const block = await getNextBlock(vm, [transaction], options, clockSkew)
+    const latestBlock = await getLatestBlock(vm)
     const result = await vm.runTx({
-      block,
+      block: latestBlock,
       tx: transaction,
       skipNonce: options.skipNonceCheck,
       skipBalance: options.skipBalanceCheck,

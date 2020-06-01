@@ -75,7 +75,7 @@ export const DEFAULT_CHAIN_OPTIONS: ChainOptions = {
   chainName: 'simple/0.0.1',
   clockSkew: 0,
   skipNonceCheck: true,
-  skipBalanceCheck: false,
+  skipBalanceCheck: true,
 }
 
 export function getChainOptionsWithDefaults (options: DeepPartial<ChainOptions> = {}): ChainOptions {
