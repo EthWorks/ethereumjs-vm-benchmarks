@@ -1,6 +1,6 @@
 import { Contract, Wallet } from 'ethers'
 import { parseEther } from 'ethers/utils'
-import { getERC20DeploymentTransaction } from './transactions'
+import { getERC20DeployTransaction } from './transactions'
 import { SimpleChain } from '../../chain'
 import { NonceCounter } from './NonceCounter'
 
@@ -13,7 +13,7 @@ export async function deployERC20 (deployer: Wallet, chain: SimpleChain, nonceCo
     initialBalance: parseEther('100'),
     nonceCounter,
   }
-  const { deployment, futureAddress } = await getERC20DeploymentTransaction(deployParams)
+  const { deployment, futureAddress } = await getERC20DeployTransaction(deployParams)
   await chain.sendTransaction(deployment)
   return new Contract(futureAddress, ERC20Mock.abi, deployer)
 }

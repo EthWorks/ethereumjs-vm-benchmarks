@@ -32,14 +32,14 @@ export async function getEthTransferTransaction ({ from, to, value, nonceCounter
   return makeHexData(signedTransaction)
 }
 
-interface DeploymentParams {
+interface DeployParams {
   deployer: Wallet,
   initialAccount: string,
   initialBalance: BigNumber,
   nonceCounter: NonceCounter,
 }
 
-export async function getERC20DeploymentTransaction (params: DeploymentParams) {
+export async function getERC20DeployTransaction (params: DeployParams) {
   const { deployer, initialAccount, initialBalance, nonceCounter } = params
 
   const erc20Factory = new ContractFactory(ERC20Mock.abi, ERC20Mock.bytecode, deployer)

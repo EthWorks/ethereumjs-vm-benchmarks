@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import { parseEther } from 'ethers/utils'
 import { Contract } from 'ethers/contract'
 import { createSimpleChain, SimpleChain, SimpleProvider } from '../../src/chain'
-import { getERC20DeploymentTransaction } from '../../src/benchmarks/utils/transactions'
+import { getERC20DeployTransaction } from '../../src/benchmarks/utils/transactions'
 import { deployERC20 } from '../../src/benchmarks/utils/deploy'
 import { NonceCounter } from '../../src/benchmarks/utils/NonceCounter'
 
@@ -29,7 +29,7 @@ describe('ERC20 deploys', () => {
       initialBalance,
       nonceCounter,
     }
-    const { deployment, futureAddress } = await getERC20DeploymentTransaction(deployParams)
+    const { deployment, futureAddress } = await getERC20DeployTransaction(deployParams)
     await chain.sendTransaction(deployment)
 
     const token = new Contract(futureAddress, ERC20Mock.abi, provider)
