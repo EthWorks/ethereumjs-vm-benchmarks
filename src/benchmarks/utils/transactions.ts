@@ -19,7 +19,7 @@ interface EthTransferParams {
   nonceCounter: NonceCounter,
 }
 
-export async function getEthTransferTransaction ({from, to, value, nonceCounter}: EthTransferParams) {
+export async function getEthTransferTransaction ({ from, to, value, nonceCounter }: EthTransferParams) {
   const transaction: TransactionRequest = {
     ...transactionDefaults,
     to: to.address,
@@ -36,12 +36,15 @@ interface DeploymentParams {
   deployer: Wallet,
   initialAccount: string,
   initialBalance: BigNumber,
+  nonceCounter: NonceCounter,
 }
 
-export async function getERC20DeploymentTransaction ({ deployer, initialAccount, initialBalance }: DeploymentParams) {
+export async function getERC20DeploymentTransaction (params: DeploymentParams) {
+  const { deployer, initialAccount, initialBalance, nonceCounter } = params
+
   const erc20Factory = new ContractFactory(ERC20Mock.abi, ERC20Mock.bytecode, deployer)
   const { data } = erc20Factory.getDeployTransaction(initialAccount, initialBalance)
-  const nonce = await deployer.getTransactionCount()
+  const nonce = nonceCounter.getNext(makeAddress(deployer.address))
 
   const deployTransaction: TransactionRequest = {
     ...transactionDefaults,
@@ -61,14 +64,15 @@ interface TransferParams {
   from: Wallet,
   to: Wallet,
   value: BigNumber,
+  nonceCounter: NonceCounter,
 }
 
-export async function getERC20TransferTransaction ({ from, to, tokenAddress, value }: TransferParams) {
+export async function getERC20TransferTransaction ({ from, to, tokenAddress, value, nonceCounter }: TransferParams) {
   const transferTransaction: TransactionRequest = {
     ...transactionDefaults,
     to: tokenAddress,
     data: erc20Interface.functions.transfer.encode([to.address, value]),
-    nonce: await from.getTransactionCount(),
+    nonce: nonceCounter.getNext(makeAddress(from.address)),
   }
 
   const signedTransfer = await from.sign(transferTransaction)
@@ -80,14 +84,17 @@ interface ApproveParams {
   owner: Wallet,
   spender: Wallet,
   amount: BigNumber,
+  nonceCounter: NonceCounter,
 }
 
-export async function getERC20ApproveTransaction ({ tokenAddress, owner, spender, amount }: ApproveParams) {
+export async function getERC20ApproveTransaction (params: ApproveParams) {
+  const { tokenAddress, owner, spender, amount, nonceCounter } = params
+
   const approveTransaction: TransactionRequest = {
     ...transactionDefaults,
     to: tokenAddress,
     data: erc20Interface.functions.approve.encode([spender.address, amount]),
-    nonce: await owner.getTransactionCount(),
+    nonce: nonceCounter.getNext(makeAddress(owner.address)),
   }
   const signedApprove = await owner.sign(approveTransaction)
   return makeHexData(signedApprove)

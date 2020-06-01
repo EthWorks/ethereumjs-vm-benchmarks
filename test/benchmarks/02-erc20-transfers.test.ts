@@ -5,18 +5,21 @@ import { parseEther } from 'ethers/utils'
 import { createSimpleChain, SimpleChain, SimpleProvider } from '../../src/chain'
 import { getERC20TransferTransaction } from '../../src/benchmarks/utils/transactions'
 import { deployERC20 } from '../../src/benchmarks/utils/deploy'
+import { NonceCounter } from '../../src/benchmarks/utils/NonceCounter'
 
 describe('ERC20 transfers', () => {
   let chain: SimpleChain
   let provider: SimpleProvider
   let deployer: Wallet
   let token: Contract
+  let nonceCounter: NonceCounter
 
   beforeEach(async () => {
     chain = await createSimpleChain()
     provider = new SimpleProvider(chain);
     ([deployer] = provider.getWallets())
-    token = await deployERC20(deployer, chain)
+    nonceCounter = new NonceCounter()
+    token = await deployERC20(deployer, chain, nonceCounter)
   })
 
   it('supports making ERC20 transfers', async () => {
@@ -27,6 +30,7 @@ describe('ERC20 transfers', () => {
       from: deployer,
       to: other,
       value: parseEther('1'),
+      nonceCounter,
     }
     const transfer = await getERC20TransferTransaction(transferParams)
     await chain.sendTransaction(transfer)
@@ -46,6 +50,7 @@ describe('ERC20 transfers', () => {
       from: deployer,
       to: other,
       value: parseEther('2'),
+      nonceCounter,
     }
     for (let i = 0; i < 5; i++) {
       const transfer = await getERC20TransferTransaction(transferParams)
@@ -57,6 +62,7 @@ describe('ERC20 transfers', () => {
       from: other,
       to: deployer,
       value: parseEther('1'),
+      nonceCounter,
     }
     for (let i = 0; i < 5; i++) {
       const refundTransfer = await getERC20TransferTransaction(refundParams)

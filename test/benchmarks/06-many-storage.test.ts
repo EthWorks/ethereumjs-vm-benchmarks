@@ -6,18 +6,21 @@ import { getERC20ApproveTransaction, getERC20TransferTransaction } from '../../s
 import { parseEther } from 'ethers/utils'
 import { randomEthValue } from '../../src/benchmarks/utils/random'
 import { expect } from 'chai'
+import { NonceCounter } from '../../src/benchmarks/utils/NonceCounter'
 
 describe('Many storage', () => {
   let chain: SimpleChain
   let provider: SimpleProvider
   let deployer: Wallet
   let token: Contract
+  let nonceCounter: NonceCounter
 
   beforeEach(async () => {
     chain = await createSimpleChain()
     provider = new SimpleProvider(chain);
     ([deployer] = provider.getWallets())
-    token = await deployERC20(deployer, chain)
+    nonceCounter = new NonceCounter()
+    token = await deployERC20(deployer, chain, nonceCounter)
   })
 
   async function makeTransfers (deployer: Wallet, rest: Wallet[]) {
@@ -25,6 +28,7 @@ describe('Many storage', () => {
       tokenAddress: token.address,
       from: deployer,
       value: parseEther('1'),
+      nonceCounter,
     }
 
     for (const wallet of rest) {
@@ -41,6 +45,7 @@ describe('Many storage', () => {
         owner: wallets[i],
         spender: provider.createEmptyWallet(),
         amount: randomEthValue(10, 50),
+        nonceCounter,
       }
       const approve = await getERC20ApproveTransaction(approveParams[i])
       await chain.sendTransaction(approve)

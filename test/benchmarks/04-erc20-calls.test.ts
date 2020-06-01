@@ -6,18 +6,21 @@ import { createSimpleChain, SimpleChain, SimpleProvider } from '../../src/chain'
 import { deployERC20 } from '../../src/benchmarks/utils/deploy'
 import { getERC20BalanceOfCall } from '../../src/benchmarks/utils/calls'
 import { getERC20TransferTransaction } from '../../src/benchmarks/utils/transactions'
+import { NonceCounter } from '../../src/benchmarks/utils/NonceCounter'
 
 describe('ERC20 calls', () => {
   let chain: SimpleChain
   let provider: SimpleProvider
   let deployer: Wallet
   let token: Contract
+  let nonceCounter: NonceCounter
 
   beforeEach(async () => {
     chain = await createSimpleChain()
     provider = new SimpleProvider(chain);
     ([deployer] = provider.getWallets())
-    token = await deployERC20(deployer, chain)
+    nonceCounter = new NonceCounter()
+    token = await deployERC20(deployer, chain, nonceCounter)
   })
 
   it('supports balanceOf calls', async () => {
@@ -29,6 +32,7 @@ describe('ERC20 calls', () => {
       from: deployer,
       to: other,
       value: parseEther('1'),
+      nonceCounter
     }
     const transfer = await getERC20TransferTransaction(transferParams)
     await chain.sendTransaction(transfer)
