@@ -32,7 +32,7 @@ describe('ERC20 calls', () => {
       from: deployer,
       to: other,
       value: parseEther('1'),
-      nonceCounter
+      nonceCounter,
     }
     const transfer = await getERC20TransferTransaction(transferParams)
     await chain.sendTransaction(transfer)

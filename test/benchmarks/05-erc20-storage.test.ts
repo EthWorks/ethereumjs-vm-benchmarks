@@ -30,7 +30,7 @@ describe('ERC20 storage', () => {
       owner: deployer,
       spender: other,
       amount: parseEther('1'),
-      nonceCounter
+      nonceCounter,
     }
     const approve = await getERC20ApproveTransaction(approveParams)
     await chain.sendTransaction(approve)
@@ -46,7 +46,7 @@ describe('ERC20 storage', () => {
       tokenAddress: token.address,
       owner: deployer,
       spender: other,
-      nonceCounter
+      nonceCounter,
     }
 
     for (let i = 1; i <= 10; i++) {

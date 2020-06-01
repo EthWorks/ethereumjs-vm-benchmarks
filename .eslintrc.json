@@ -76,6 +76,7 @@
     ],
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-useless-constructor": "error",
+    "@typescript-eslint/no-var-requires": "off",
     "accessor-pairs": "error",
     "array-bracket-spacing": [
       "error",
@@ -505,7 +506,6 @@
       ],
       "rules": {
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
         "no-unused-expressions": "off"
       }

@@ -60,7 +60,7 @@ describe('Many storage', () => {
     const approveParams = await makeApprovals([deployer, ...rest])
 
     const deployerBalance = await token.balanceOf(deployer.address)
-    expect(deployerBalance.eq(parseEther('91'))).to.be.true
+    expect(deployerBalance.eq(parseEther('81'))).to.be.true
 
     for (const wallet of rest) {
       const balance = await token.balanceOf(wallet.address)
@@ -72,6 +72,6 @@ describe('Many storage', () => {
       expect(allowance.eq(param.amount)).to.be.true
     }
 
-    await expect(provider.getBlockNumber()).to.eventually.eq(1 + 9 + 10)
+    await expect(provider.getBlockNumber()).to.eventually.eq(1 + 19 + 10)
   })
 })

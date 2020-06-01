@@ -24,7 +24,7 @@ export async function getEthTransferTransaction ({ from, to, value, nonceCounter
     ...transactionDefaults,
     to: to.address,
     value,
-    nonce: nonceCounter.getNext(makeAddress(from.address)),
+    nonce: nonceCounter.getCurrent(makeAddress(from.address)),
     gasLimit: 21000,
   }
 
@@ -44,7 +44,7 @@ export async function getERC20DeploymentTransaction (params: DeploymentParams) {
 
   const erc20Factory = new ContractFactory(ERC20Mock.abi, ERC20Mock.bytecode, deployer)
   const { data } = erc20Factory.getDeployTransaction(initialAccount, initialBalance)
-  const nonce = nonceCounter.getNext(makeAddress(deployer.address))
+  const nonce = nonceCounter.getCurrent(makeAddress(deployer.address))
 
   const deployTransaction: TransactionRequest = {
     ...transactionDefaults,
@@ -72,7 +72,7 @@ export async function getERC20TransferTransaction ({ from, to, tokenAddress, val
     ...transactionDefaults,
     to: tokenAddress,
     data: erc20Interface.functions.transfer.encode([to.address, value]),
-    nonce: nonceCounter.getNext(makeAddress(from.address)),
+    nonce: nonceCounter.getCurrent(makeAddress(from.address)),
   }
 
   const signedTransfer = await from.sign(transferTransaction)
@@ -94,7 +94,7 @@ export async function getERC20ApproveTransaction (params: ApproveParams) {
     ...transactionDefaults,
     to: tokenAddress,
     data: erc20Interface.functions.approve.encode([spender.address, amount]),
-    nonce: nonceCounter.getNext(makeAddress(owner.address)),
+    nonce: nonceCounter.getCurrent(makeAddress(owner.address)),
   }
   const signedApprove = await owner.sign(approveTransaction)
   return makeHexData(signedApprove)

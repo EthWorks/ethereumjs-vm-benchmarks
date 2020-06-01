@@ -9,6 +9,6 @@ export function getEnv (key: string, fallback: string) {
   throw new Error(`Environment variable ${key} not found!`)
 }
 
-export function getBooleanEnv(key: string, fallback?: boolean) {
-  return getEnv(key, `${fallback}`) === 'true';
+export function getBooleanEnv (key: string, fallback?: boolean) {
+  return getEnv(key, `${fallback}`) === 'true'
 }
