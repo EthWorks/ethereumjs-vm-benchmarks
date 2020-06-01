@@ -4,8 +4,8 @@
   "scripts": {
     "start": "./scripts/benchmarkSeparately.sh",
     "start:dirty": "INITIAL_STATE=dirty ./scripts/benchmarkSeparately.sh",
-    "benchmark": "BENCHMARK=erc20-calls node dist/benchmarks/index.js",
-    "debug": "BENCHMARK=erc20-storage ts-node --transpile-only src/benchmarks/index.ts",
+    "benchmark": "node dist/benchmarks/index.js",
+    "debug": "ts-node --transpile-only src/benchmarks/index.ts",
     "prebuild": "rm -rf dist",
     "build": "tsc -p tsconfig.build.json",
     "test": "mocha",
