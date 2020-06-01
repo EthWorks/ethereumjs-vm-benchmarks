@@ -1,7 +1,8 @@
-import { DEFAULT_CHAIN_OPTIONS, makeHexData } from '../../chain'
+import { DEFAULT_CHAIN_OPTIONS, makeAddress, makeHexData } from '../../chain'
 import { ContractFactory, Wallet } from 'ethers'
 import { BigNumber, bigNumberify, getContractAddress, Interface } from 'ethers/utils'
 import { TransactionRequest } from 'ethers/providers'
+import { NonceCounter } from './NonceCounter'
 
 const ERC20Mock = require('../../../contracts/ERC20Mock.json')
 const erc20Interface = new Interface(ERC20Mock.abi)
@@ -11,12 +12,19 @@ const transactionDefaults: TransactionRequest = {
   gasLimit: bigNumberify(DEFAULT_CHAIN_OPTIONS.blockGasLimit.toString()),
 }
 
-export async function getEthTransferTransaction (from: Wallet, to: Wallet, value: BigNumber) {
+interface EthTransferParams {
+  from: Wallet,
+  to: Wallet,
+  value: BigNumber,
+  nonceCounter: NonceCounter,
+}
+
+export async function getEthTransferTransaction ({from, to, value, nonceCounter}: EthTransferParams) {
   const transaction: TransactionRequest = {
     ...transactionDefaults,
     to: to.address,
     value,
-    nonce: await from.getTransactionCount(),
+    nonce: nonceCounter.getNext(makeAddress(from.address)),
     gasLimit: 21000,
   }
 
