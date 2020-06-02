@@ -1,11 +1,12 @@
-import { getBooleanEnv } from './utils/getEnv'
+import { getBooleanEnv, getEnv } from './utils/getEnv'
 import { average, std } from './utils/metrics'
 import { formatMs, formatNanos } from './utils/formatTime'
 import { createSimpleChain, SimpleChain } from '../chain'
+import { fillChainState } from './utils/fillChainState'
 
 const samples = 10
 const logSampleTimes = getBooleanEnv('LOG_SAMPLE_TIMES', true)
-// const initialState = getEnv('INITIAL_STATE', 'empty')
+const initialState = getEnv('INITIAL_STATE', 'empty')
 
 function log (name: string, runs: number, msg: string) {
   console.log(`${name} | samples: ${samples}, runs: ${runs} | ${msg}`)
@@ -17,10 +18,9 @@ export async function runBenchmark (name: string, fn: BenchmarkFunction, runs: n
   runs = Math.ceil(runs)
   const chain = await createSimpleChain()
 
-  // TODO handle
-  // if (initialState !== 'empty') {
-  //   await fillProviderState(provider, 10)
-  // }
+  if (initialState !== 'empty') {
+    await fillChainState(chain, 10)
+  }
 
   const sampleTimes = new Array(samples)
 
